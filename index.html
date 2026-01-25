@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ripper Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 229, 255, 0.05),
+        rgba(0, 229, 255, 0.05) 2px,
+        transparent 2px,
+        transparent 8px
+      );
+      animation: moveBg 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveBg {
+      from { transform: translateX(0); }
+      to { transform: translateX(200px); }
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hero {
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1 span {
+      color: #00e5ff;
+      text-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #00e5ff, #4facfe);
+      color: #000;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.4);
+      transition: 0.3s ease;
+      margin: 10px 10px 0 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 229, 255, 0.6);
+    }
+
+    section {
+      padding: 90px 12%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 229, 255, 0.25);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #00e5ff;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ul li {
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    ul li::before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
+      color: #00e5ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      opacity: 0.7;
+    }
+
+    .footer-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .toast {
+      visibility: hidden;
+      min-width: 220px;
+      background-color: rgba(0, 229, 255, 0.9);
+      color: #000;
+      text-align: center;
+      border-radius: 25px;
+      padding: 12px;
+      position: fixed;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%);
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.4);
+      z-index: 999;
+      transition: visibility 0s, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      section { padding: 70px 8%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="hero">
+      <h1><span>Ripper</span> Portfolio</h1>
+      <p class="subtitle">16-year-old Roblox Scripter · 2 Months Experience</p>
+      <a class="btn" href="https://discord.com/users/1050130997204754452" target="_blank" aria-label="Open Discord profile">View My Discord Profile</a>
+      <button class="btn" id="copyBtn" onclick="copyDiscord()" aria-label="Copy Discord username">Copy Discord Username</button>
+      <div id="toast" class="toast">Copied: ripper</div>
+    </div>
+  </header>
+
+  <section>
+    <div class="card">
+      <h2>About Me</h2>
+      <p>
+        Hey! I'm <strong>Ripper</strong>, a motivated Roblox scripter with a strong passion for development.
+        Even with <strong>2 months of scripting experience</strong>, I already understand important systems
+        and write clean, organized code.
+        <br><br>
+        I'm currently offering <strong>free commissions</strong> to help developers bring their ideas to life
+        while I gain more real-world experience.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>What I Can Do</h2>
+      <ul>
+        <li>DataStore Handling (Saving & Loading Player Data)</li>
+        <li>Player Stats Systems</li>
+        <li>Simulator Game Mechanics</li>
+        <li>Currency & Upgrade Systems</li>
+        <li>Optimized & Clean Code</li>
+        <li>SSA (Single Script Architecture)</li>
+        <li>Can do many systems (just not complex vehicle systems yet)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Services</h2>
+      <p>
+        • Free scripting commissions<br>
+        • Scripting systems for Roblox games<br>
+        • Bug fixes & improvements<br>
+        • Potential long-term collaboration
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Let's Work Together</h2>
+      <p>
+        I'm always excited to help on new projects and collaborate with creative developers.
+        If you want a dedicated scripter who cares about your game, feel free to reach out.
+        <br><br>
+        <strong>Looking forward to working on your game and helping it succeed 🚀</strong>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-text">Discord: <strong>ripper</strong> · ID: <strong>1050130997204754452</strong></div>
+  </footer>
+
+  <script>
+    function copyDiscord() {
+      const text = 'ripper';
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1800);
+      });
+    }
+  </script>
+</body>
+</html>
