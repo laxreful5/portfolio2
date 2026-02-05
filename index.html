@@ -21,28 +21,25 @@ body {
   overflow-x: hidden;
 }
 
-/* Animated background */
+/* === Animated Grid Background === */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(0,229,255,0.04),
-    rgba(0,229,255,0.04) 2px,
-    transparent 2px,
-    transparent 10px
-  );
-  animation: bgMove 30s linear infinite;
+  background:
+    linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 40s linear infinite;
   z-index: -1;
 }
 
-@keyframes bgMove {
-  from { transform: translateX(0); }
-  to { transform: translateX(300px); }
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 600px 600px; }
 }
 
-/* Header */
+/* === Header === */
 header {
   min-height: 100vh;
   display: flex;
@@ -53,82 +50,114 @@ header {
 }
 
 .hero {
-  animation: fadeUp 1.4s ease forwards;
+  animation: heroIn 1.6s ease forwards;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(25px); }
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
-  font-size: 3.6rem;
+  font-size: 3.7rem;
   font-weight: 700;
 }
 
 h1 span {
   color: #00e5ff;
-  text-shadow: 0 0 18px rgba(0,229,255,0.8);
+  text-shadow: 0 0 20px rgba(0,229,255,0.9);
 }
 
 .subtitle {
   margin-top: 10px;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   opacity: 0.9;
 }
 
 .badge {
   display: inline-block;
-  margin: 18px 0 25px;
-  padding: 7px 18px;
+  margin: 20px 0 28px;
+  padding: 8px 20px;
   border-radius: 25px;
-  background: rgba(0,229,255,0.15);
+  background: rgba(0,229,255,0.18);
   color: #00e5ff;
   font-weight: 600;
-  box-shadow: 0 0 25px rgba(0,229,255,0.35);
+  box-shadow: 0 0 30px rgba(0,229,255,0.45);
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 25px rgba(0,229,255,0.4); }
+  50% { box-shadow: 0 0 45px rgba(0,229,255,0.8); }
+}
+
+/* === Buttons === */
 .btn {
   display: inline-block;
-  padding: 14px 38px;
+  padding: 14px 40px;
   margin: 10px;
   background: linear-gradient(135deg, #00e5ff, #4facfe);
   color: #000;
   border-radius: 40px;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
-  transition: 0.3s ease;
+  box-shadow: 0 14px 35px rgba(0,229,255,0.45);
+  transition: 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: translateX(-100%);
+}
+
+.btn:hover::after {
+  transform: translateX(100%);
+  transition: 0.6s;
 }
 
 .btn:hover {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 25px 50px rgba(0,229,255,0.6);
+  transform: translateY(-7px) scale(1.06);
+  box-shadow: 0 30px 60px rgba(0,229,255,0.7);
 }
 
-/* Sections */
+/* === Sections === */
 section {
   padding: 90px 12%;
 }
 
 .card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 22px;
-  padding: 42px;
-  margin-bottom: 45px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-  transition: 0.35s ease;
+  background: rgba(255,255,255,0.06);
+  border-radius: 24px;
+  padding: 44px;
+  margin-bottom: 50px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.45);
+  transition: 0.4s ease;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(0,229,255,0.15);
+  pointer-events: none;
 }
 
 .card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 35px 70px rgba(0,229,255,0.25);
+  transform: translateY(-14px);
+  box-shadow: 0 40px 90px rgba(0,229,255,0.3);
 }
 
 h2 {
   color: #00e5ff;
-  font-size: 2.2rem;
+  font-size: 2.25rem;
   margin-bottom: 20px;
 }
 
@@ -138,7 +167,7 @@ ul {
 
 ul li {
   margin-bottom: 12px;
-  padding-left: 26px;
+  padding-left: 28px;
   position: relative;
 }
 
@@ -149,14 +178,14 @@ ul li::before {
   color: #00e5ff;
 }
 
-/* Footer */
+/* === Footer === */
 footer {
   text-align: center;
   padding: 40px;
   opacity: 0.75;
 }
 
-/* Toast */
+/* === Toast === */
 .toast {
   visibility: hidden;
   opacity: 0;
@@ -164,12 +193,12 @@ footer {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,229,255,0.9);
+  background: rgba(0,229,255,0.95);
   color: #000;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 25px;
   font-weight: 600;
-  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
+  box-shadow: 0 15px 40px rgba(0,229,255,0.5);
   transition: opacity 0.3s ease;
 }
 
@@ -179,7 +208,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
+  h1 { font-size: 2.6rem; }
   section { padding: 70px 8%; }
 }
 </style>
@@ -206,11 +235,11 @@ footer {
     I’m <strong>Ripper</strong>, an <strong>intermediate to beginner-advanced Roblox scripter</strong>
     focused on building efficient, scalable, and cleanly structured systems.
     <br><br>
-    With active hands-on experience, I’m comfortable developing core gameplay mechanics,
-    DataStore systems, and optimized logic while keeping projects easy to maintain.
+    I’m comfortable developing a wide range of gameplay systems, handling data persistence,
+    and optimizing logic while keeping projects easy to maintain.
     <br><br>
-    I offer <strong>paid scripting commissions</strong> to continue growing professionally
-    while delivering reliable, high-quality systems.
+    I offer <strong>paid scripting commissions</strong> while continuously improving
+    and delivering reliable, high-quality systems.
     <br><br>
     💰 <strong>Affordable & negotiable pricing</strong> based on complexity and workload.
   </p>
@@ -219,13 +248,19 @@ footer {
 <div class="card">
   <h2>What I Can Do</h2>
   <ul>
-    <li>DataStore Saving & Loading Systems</li>
-    <li>Player Stats & Progression Systems</li>
-    <li>Currency, Upgrade & Shop Systems</li>
-    <li>Simulator-Style Mechanics</li>
-    <li>Bug Fixing & Script Optimization</li>
-    <li>Clean, Maintainable Code Practices</li>
+    <li>DataStore saving & loading systems</li>
+    <li>Player stats, progression & leaderstats</li>
+    <li>Currency, upgrades & shop systems</li>
+    <li>Simulator-style and core gameplay mechanics</li>
+    <li>Bug fixing, optimization & refactoring</li>
+    <li>Clean, maintainable & scalable code</li>
+    <li>Many other custom systems depending on project needs</li>
   </ul>
+  <p style="margin-top: 16px; opacity: 0.85;">
+    ⚠️ Note: I currently do not take <strong>vehicle-related systems</strong>
+    (advanced driving mechanics, car physics, etc.), but I am comfortable with most
+    other non-vehicle gameplay systems.
+  </p>
 </div>
 
 <div class="card">
@@ -233,11 +268,11 @@ footer {
   <p>
     I commonly use <strong>SSA (Single Script Architecture)</strong>.
     <br><br>
-    This means game logic is centralized into structured modules rather than scattered scripts,
+    This approach centralizes logic into structured modules instead of scattered scripts,
     resulting in <strong>better performance</strong>, <strong>more control</strong>,
     and <strong>easier debugging</strong>.
     <br><br>
-    SSA keeps projects scalable and professional long-term.
+    SSA keeps projects scalable, organized, and professional long-term.
   </p>
 </div>
 
@@ -262,9 +297,9 @@ footer {
 </div>
 
 <div class="card">
-  <h2>Showcase & Collaboration</h2>
+  <h2>Showcase & Free Collaboration</h2>
   <p>
-    I’m open to collaborating with other developers to create and record
+    I’m open to <strong>free collaborations</strong> with other developers to create and record
     real in-game showcases that highlight <strong>both of our skills</strong>.
     <br><br>
     Examples:
@@ -274,7 +309,7 @@ footer {
     • Builders – I script mechanics inside your environments<br>
     • VFX Artists – I hook effects into live systems
     <br><br>
-    These collaborations may be featured here (with permission) as real-world examples
+    Showcases may be featured here (with permission) as real-world examples
     of professional teamwork and development.
   </p>
 </div>
