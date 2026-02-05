@@ -1,201 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ripper Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ripper | Roblox Scripter Portfolio</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-    body {
-      background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
-      color: #ffffff;
-      overflow-x: hidden;
-    }
+body {
+  background: radial-gradient(circle at top, #1a1a2e, #0b0b14);
+  color: #fff;
+  overflow-x: hidden;
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(0, 229, 255, 0.05),
-        rgba(0, 229, 255, 0.05) 2px,
-        transparent 2px,
-        transparent 8px
-      );
-      animation: moveBg 20s linear infinite;
-      z-index: -1;
-    }
+/* Animated background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0,229,255,0.04),
+    rgba(0,229,255,0.04) 2px,
+    transparent 2px,
+    transparent 10px
+  );
+  animation: bgMove 30s linear infinite;
+  z-index: -1;
+}
 
-    @keyframes moveBg {
-      from { transform: translateX(0); }
-      to { transform: translateX(200px); }
-    }
+@keyframes bgMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(300px); }
+}
 
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px;
-    }
+/* Header */
+header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
 
-    .hero {
-      animation: fadeIn 1.5s ease forwards;
-    }
+.hero {
+  animation: fadeUp 1.4s ease forwards;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 3.6rem;
+  font-weight: 700;
+}
 
-    h1 span {
-      color: #00e5ff;
-      text-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
-    }
+h1 span {
+  color: #00e5ff;
+  text-shadow: 0 0 18px rgba(0,229,255,0.8);
+}
 
-    .subtitle {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      margin-bottom: 10px;
-    }
+.subtitle {
+  margin-top: 10px;
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
 
-    .status {
-      display: inline-block;
-      margin-bottom: 25px;
-      padding: 6px 16px;
-      border-radius: 20px;
-      background: rgba(0, 229, 255, 0.15);
-      color: #00e5ff;
-      font-weight: 600;
-      box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
-    }
+.badge {
+  display: inline-block;
+  margin: 18px 0 25px;
+  padding: 7px 18px;
+  border-radius: 25px;
+  background: rgba(0,229,255,0.15);
+  color: #00e5ff;
+  font-weight: 600;
+  box-shadow: 0 0 25px rgba(0,229,255,0.35);
+}
 
-    .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      background: linear-gradient(135deg, #00e5ff, #4facfe);
-      color: #000;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.4);
-      transition: 0.3s ease;
-      margin: 10px 10px 0 10px;
-    }
+.btn {
+  display: inline-block;
+  padding: 14px 38px;
+  margin: 10px;
+  background: linear-gradient(135deg, #00e5ff, #4facfe);
+  color: #000;
+  border-radius: 40px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
+  transition: 0.3s ease;
+}
 
-    .btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(0, 229, 255, 0.6);
-    }
+.btn:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(0,229,255,0.6);
+}
 
-    section {
-      padding: 90px 12%;
-    }
+/* Sections */
+section {
+  padding: 90px 12%;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 40px;
-      margin-bottom: 40px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-      transition: 0.3s ease;
-    }
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 22px;
+  padding: 42px;
+  margin-bottom: 45px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+  transition: 0.35s ease;
+}
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 60px rgba(0, 229, 255, 0.25);
-    }
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 35px 70px rgba(0,229,255,0.25);
+}
 
-    h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      color: #00e5ff;
-    }
+h2 {
+  color: #00e5ff;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
 
-    ul {
-      list-style: none;
-    }
+ul {
+  list-style: none;
+}
 
-    ul li {
-      margin-bottom: 12px;
-      font-size: 1.05rem;
-      position: relative;
-      padding-left: 25px;
-    }
+ul li {
+  margin-bottom: 12px;
+  padding-left: 26px;
+  position: relative;
+}
 
-    ul li::before {
-      content: "⚡";
-      position: absolute;
-      left: 0;
-      color: #00e5ff;
-    }
+ul li::before {
+  content: "⚡";
+  position: absolute;
+  left: 0;
+  color: #00e5ff;
+}
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      opacity: 0.7;
-    }
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px;
+  opacity: 0.75;
+}
 
-    .toast {
-      visibility: hidden;
-      min-width: 220px;
-      background-color: rgba(0, 229, 255, 0.9);
-      color: #000;
-      text-align: center;
-      border-radius: 25px;
-      padding: 12px;
-      position: fixed;
-      left: 50%;
-      bottom: 40px;
-      transform: translateX(-50%);
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.4);
-      z-index: 999;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+/* Toast */
+.toast {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,229,255,0.9);
+  color: #000;
+  padding: 12px 26px;
+  border-radius: 25px;
+  font-weight: 600;
+  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
+  transition: opacity 0.3s ease;
+}
 
-    .toast.show {
-      visibility: visible;
-      opacity: 1;
-    }
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2.5rem; }
-      section { padding: 70px 8%; }
-    }
-  </style>
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  section { padding: 70px 8%; }
+}
+</style>
 </head>
+
 <body>
 
 <header>
   <div class="hero">
     <h1><span>Ripper</span> Portfolio</h1>
     <p class="subtitle">Intermediate → Beginner-Advanced Roblox Scripter</p>
-    <div class="status">PAID COMMISSIONS OPEN</div><br>
-    <a class="btn" href="https://discord.com/users/1050130997204754452" target="_blank">View Discord Profile</a>
+    <div class="badge">PAID COMMISSIONS OPEN</div><br>
+    <a class="btn" href="https://discord.com/users/1050130997204754452" target="_blank">Discord Profile</a>
     <button class="btn" onclick="copyDiscord()">Copy Discord Username</button>
     <div id="toast" class="toast">Copied: ripper</div>
   </div>
@@ -203,82 +200,94 @@
 
 <section>
 
-  <div class="card">
-    <h2>About Me</h2>
-    <p>
-      Hey! I'm <strong>Ripper</strong>, an <strong>intermediate to beginner-advanced Roblox scripter</strong>
-      focused on building efficient, scalable, and well-structured game systems.
-      <br><br>
-      With <strong>2+ months of active scripting experience</strong>, I’m comfortable creating core gameplay
-      mechanics, handling data systems, and optimizing scripts for performance and maintainability.
-      <br><br>
-      I currently offer <strong>paid scripting commissions</strong> to continue improving as a developer
-      while delivering reliable, clean systems to game creators.
-      <br><br>
-      💰 <strong>Affordable & negotiable pricing</strong> — flexible depending on system complexity.
-    </p>
-  </div>
+<div class="card">
+  <h2>About Me</h2>
+  <p>
+    I’m <strong>Ripper</strong>, an <strong>intermediate to beginner-advanced Roblox scripter</strong>
+    focused on building efficient, scalable, and cleanly structured systems.
+    <br><br>
+    With active hands-on experience, I’m comfortable developing core gameplay mechanics,
+    DataStore systems, and optimized logic while keeping projects easy to maintain.
+    <br><br>
+    I offer <strong>paid scripting commissions</strong> to continue growing professionally
+    while delivering reliable, high-quality systems.
+    <br><br>
+    💰 <strong>Affordable & negotiable pricing</strong> based on complexity and workload.
+  </p>
+</div>
 
-  <div class="card">
-    <h2>What I Can Do</h2>
-    <ul>
-      <li>DataStore Handling (Saving & Loading Player Data)</li>
-      <li>Player Stats & Leaderstats Systems</li>
-      <li>Simulator & Progression Mechanics</li>
-      <li>Currency, Upgrade & Shop Systems</li>
-      <li>Bug Fixing & Script Optimization</li>
-      <li>Clean, Organized & Maintainable Code</li>
-      <li>Flexible with many systems (excluding complex vehicle physics)</li>
-    </ul>
-  </div>
+<div class="card">
+  <h2>What I Can Do</h2>
+  <ul>
+    <li>DataStore Saving & Loading Systems</li>
+    <li>Player Stats & Progression Systems</li>
+    <li>Currency, Upgrade & Shop Systems</li>
+    <li>Simulator-Style Mechanics</li>
+    <li>Bug Fixing & Script Optimization</li>
+    <li>Clean, Maintainable Code Practices</li>
+  </ul>
+</div>
 
-  <div class="card">
-    <h2>Architecture & Performance</h2>
-    <p>
-      I use <strong>SSA (Single Script Architecture)</strong> when appropriate.
-      <br><br>
-      SSA means centralizing logic into structured modules instead of scattered scripts,
-      resulting in <strong>better performance</strong>, <strong>easier debugging</strong>,
-      and <strong>greater control over game systems</strong>.
-      <br><br>
-      This approach helps keep projects scalable, optimized, and easier to maintain long-term.
-    </p>
-  </div>
+<div class="card">
+  <h2>Architecture & Performance</h2>
+  <p>
+    I commonly use <strong>SSA (Single Script Architecture)</strong>.
+    <br><br>
+    This means game logic is centralized into structured modules rather than scattered scripts,
+    resulting in <strong>better performance</strong>, <strong>more control</strong>,
+    and <strong>easier debugging</strong>.
+    <br><br>
+    SSA keeps projects scalable and professional long-term.
+  </p>
+</div>
 
-  <div class="card">
-    <h2>Services</h2>
-    <p>
-      • <strong>Paid scripting commissions</strong><br>
-      • Roblox game systems & mechanics<br>
-      • Script optimization & bug fixing<br>
-      • Improving existing codebases<br>
-      • Potential long-term collaboration
-    </p>
-    <p style="margin-top: 12px; opacity: 0.85;">
-      Pricing is <strong>affordable and negotiable</strong> depending on workload and complexity.
-    </p>
-  </div>
+<div class="card">
+  <h2>Services</h2>
+  <p>
+    • Paid scripting commissions<br>
+    • Roblox game systems & mechanics<br>
+    • Script optimization & improvements<br>
+    • Bug fixing & refactoring<br>
+    • Long-term collaboration
+  </p>
+</div>
 
-  <div class="card">
-    <h2>Payment Methods</h2>
-    <p>
-      I currently accept payments via:<br><br>
-      • <strong>PayPal</strong><br>
-      • <strong>Robux</strong><br><br>
-      Payment method can be discussed beforehand.
-    </p>
-  </div>
+<div class="card">
+  <h2>Payment Methods</h2>
+  <p>
+    • <strong>PayPal</strong><br>
+    • <strong>Robux</strong><br><br>
+    Payment method can be discussed beforehand.
+  </p>
+</div>
 
-  <div class="card">
-    <h2>Let’s Work Together</h2>
-    <p>
-      I’m always excited to work on new projects and collaborate with passionate developers.
-      If you’re looking for a reliable scripter who cares about quality and performance,
-      feel free to reach out.
-      <br><br>
-      <strong>Let’s build something great 🚀</strong>
-    </p>
-  </div>
+<div class="card">
+  <h2>Showcase & Collaboration</h2>
+  <p>
+    I’m open to collaborating with other developers to create and record
+    real in-game showcases that highlight <strong>both of our skills</strong>.
+    <br><br>
+    Examples:
+    <br>
+    • Animators – I script systems that use your animations in real gameplay<br>
+    • UI Designers – I integrate UI into functional systems<br>
+    • Builders – I script mechanics inside your environments<br>
+    • VFX Artists – I hook effects into live systems
+    <br><br>
+    These collaborations may be featured here (with permission) as real-world examples
+    of professional teamwork and development.
+  </p>
+</div>
+
+<div class="card">
+  <h2>Let’s Work Together</h2>
+  <p>
+    If you’re looking for a reliable scripter who cares about structure,
+    performance, and long-term quality, feel free to reach out.
+    <br><br>
+    <strong>Let’s build something great 🚀</strong>
+  </p>
+</div>
 
 </section>
 
@@ -287,13 +296,13 @@
 </footer>
 
 <script>
-  function copyDiscord() {
-    navigator.clipboard.writeText("ripper").then(() => {
-      const toast = document.getElementById("toast");
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 1800);
-    });
-  }
+function copyDiscord() {
+  navigator.clipboard.writeText("ripper").then(() => {
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 1800);
+  });
+}
 </script>
 
 </body>
