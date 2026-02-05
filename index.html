@@ -21,25 +21,28 @@ body {
   overflow-x: hidden;
 }
 
-/* === Animated Grid Background === */
+/* Animated background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background:
-    linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 40s linear infinite;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0,229,255,0.04),
+    rgba(0,229,255,0.04) 2px,
+    transparent 2px,
+    transparent 10px
+  );
+  animation: bgMove 30s linear infinite;
   z-index: -1;
 }
 
-@keyframes gridMove {
-  from { background-position: 0 0; }
-  to { background-position: 600px 600px; }
+@keyframes bgMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(300px); }
 }
 
-/* === Header === */
+/* Header */
 header {
   min-height: 100vh;
   display: flex;
@@ -50,114 +53,82 @@ header {
 }
 
 .hero {
-  animation: heroIn 1.6s ease forwards;
+  animation: fadeUp 1.4s ease forwards;
 }
 
-@keyframes heroIn {
-  from { opacity: 0; transform: translateY(30px); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
-  font-size: 3.7rem;
+  font-size: 3.6rem;
   font-weight: 700;
 }
 
 h1 span {
   color: #00e5ff;
-  text-shadow: 0 0 20px rgba(0,229,255,0.9);
+  text-shadow: 0 0 18px rgba(0,229,255,0.8);
 }
 
 .subtitle {
   margin-top: 10px;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   opacity: 0.9;
 }
 
 .badge {
   display: inline-block;
-  margin: 20px 0 28px;
-  padding: 8px 20px;
+  margin: 18px 0 25px;
+  padding: 7px 18px;
   border-radius: 25px;
-  background: rgba(0,229,255,0.18);
+  background: rgba(0,229,255,0.15);
   color: #00e5ff;
   font-weight: 600;
-  box-shadow: 0 0 30px rgba(0,229,255,0.45);
-  animation: pulse 2.5s ease-in-out infinite;
+  box-shadow: 0 0 25px rgba(0,229,255,0.35);
 }
 
-@keyframes pulse {
-  0%,100% { box-shadow: 0 0 25px rgba(0,229,255,0.4); }
-  50% { box-shadow: 0 0 45px rgba(0,229,255,0.8); }
-}
-
-/* === Buttons === */
 .btn {
   display: inline-block;
-  padding: 14px 40px;
+  padding: 14px 38px;
   margin: 10px;
   background: linear-gradient(135deg, #00e5ff, #4facfe);
   color: #000;
   border-radius: 40px;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 14px 35px rgba(0,229,255,0.45);
-  transition: 0.35s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-  transform: translateX(-100%);
-}
-
-.btn:hover::after {
-  transform: translateX(100%);
-  transition: 0.6s;
+  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
+  transition: 0.3s ease;
 }
 
 .btn:hover {
-  transform: translateY(-7px) scale(1.06);
-  box-shadow: 0 30px 60px rgba(0,229,255,0.7);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(0,229,255,0.6);
 }
 
-/* === Sections === */
+/* Sections */
 section {
   padding: 90px 12%;
 }
 
 .card {
-  background: rgba(255,255,255,0.06);
-  border-radius: 24px;
-  padding: 44px;
-  margin-bottom: 50px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 28px 70px rgba(0,0,0,0.45);
-  transition: 0.4s ease;
-  position: relative;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  border: 1px solid rgba(0,229,255,0.15);
-  pointer-events: none;
+  background: rgba(255,255,255,0.05);
+  border-radius: 22px;
+  padding: 42px;
+  margin-bottom: 45px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+  transition: 0.35s ease;
 }
 
 .card:hover {
-  transform: translateY(-14px);
-  box-shadow: 0 40px 90px rgba(0,229,255,0.3);
+  transform: translateY(-12px);
+  box-shadow: 0 35px 70px rgba(0,229,255,0.25);
 }
 
 h2 {
   color: #00e5ff;
-  font-size: 2.25rem;
+  font-size: 2.2rem;
   margin-bottom: 20px;
 }
 
@@ -167,7 +138,7 @@ ul {
 
 ul li {
   margin-bottom: 12px;
-  padding-left: 28px;
+  padding-left: 26px;
   position: relative;
 }
 
@@ -178,14 +149,14 @@ ul li::before {
   color: #00e5ff;
 }
 
-/* === Footer === */
+/* Footer */
 footer {
   text-align: center;
   padding: 40px;
   opacity: 0.75;
 }
 
-/* === Toast === */
+/* Toast */
 .toast {
   visibility: hidden;
   opacity: 0;
@@ -193,12 +164,12 @@ footer {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,229,255,0.95);
+  background: rgba(0,229,255,0.9);
   color: #000;
-  padding: 12px 28px;
+  padding: 12px 26px;
   border-radius: 25px;
   font-weight: 600;
-  box-shadow: 0 15px 40px rgba(0,229,255,0.5);
+  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
   transition: opacity 0.3s ease;
 }
 
@@ -208,7 +179,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 2.6rem; }
+  h1 { font-size: 2.5rem; }
   section { padding: 70px 8%; }
 }
 </style>
@@ -221,9 +192,22 @@ footer {
     <h1><span>Ripper</span> Portfolio</h1>
     <p class="subtitle">Intermediate → Beginner-Advanced Roblox Scripter</p>
     <div class="badge">PAID COMMISSIONS OPEN</div><br>
-    <a class="btn" href="https://discord.com/users/1050130997204754452" target="_blank">Discord Profile</a>
+
+    <a class="btn" href="https://discord.com/users/1050130997204754452" target="_blank">
+      Open Discord Profile
+    </a>
+
+    <a class="btn" href="discord://-/users/1050130997204754452">
+      Open in Discord App
+    </a>
+
     <button class="btn" onclick="copyDiscord()">Copy Discord Username</button>
-    <div id="toast" class="toast">Copied: ripper</div>
+
+    <p style="margin-top:14px; opacity:0.85; font-size:0.95rem;">
+      Opens my Discord profile — feel free to add me or send a message directly.
+    </p>
+
+    <div id="toast" class="toast">Copied: ripperhub</div>
   </div>
 </header>
 
@@ -233,15 +217,12 @@ footer {
   <h2>About Me</h2>
   <p>
     I’m <strong>Ripper</strong>, an <strong>intermediate to beginner-advanced Roblox scripter</strong>
-    focused on building efficient, scalable, and cleanly structured systems.
+    focused on building efficient, scalable, and professional game systems.
     <br><br>
-    I’m comfortable developing a wide range of gameplay systems, handling data persistence,
-    and optimizing logic while keeping projects easy to maintain.
+    I offer <strong>paid scripting commissions</strong> to continue improving as a developer
+    while delivering clean, reliable systems for real projects.
     <br><br>
-    I offer <strong>paid scripting commissions</strong> while continuously improving
-    and delivering reliable, high-quality systems.
-    <br><br>
-    💰 <strong>Affordable & negotiable pricing</strong> based on complexity and workload.
+    💰 <strong>Affordable & negotiable pricing</strong> depending on system complexity.
   </p>
 </div>
 
@@ -249,41 +230,28 @@ footer {
   <h2>What I Can Do</h2>
   <ul>
     <li>DataStore saving & loading systems</li>
-    <li>Player stats, progression & leaderstats</li>
-    <li>Currency, upgrades & shop systems</li>
-    <li>Simulator-style and core gameplay mechanics</li>
+    <li>Player stats & progression systems</li>
+    <li>Currency, shop & upgrade systems</li>
+    <li>Simulator-style mechanics</li>
+    <li>Core gameplay logic & features</li>
     <li>Bug fixing, optimization & refactoring</li>
-    <li>Clean, maintainable & scalable code</li>
     <li>Many other custom systems depending on project needs</li>
   </ul>
-  <p style="margin-top: 16px; opacity: 0.85;">
-    ⚠️ Note: I currently do not take <strong>vehicle-related systems</strong>
-    (advanced driving mechanics, car physics, etc.), but I am comfortable with most
-    other non-vehicle gameplay systems.
+  <p style="margin-top:14px; opacity:0.85;">
+    ⚠️ I currently do not take <strong>vehicle-related systems</strong>
+    (advanced driving, car physics, etc.).
   </p>
 </div>
 
 <div class="card">
   <h2>Architecture & Performance</h2>
   <p>
-    I commonly use <strong>SSA (Single Script Architecture)</strong>.
+    I commonly use <strong>SSA (Single Script Architecture)</strong>,
+    meaning game logic is centralized into structured modules.
     <br><br>
-    This approach centralizes logic into structured modules instead of scattered scripts,
-    resulting in <strong>better performance</strong>, <strong>more control</strong>,
-    and <strong>easier debugging</strong>.
-    <br><br>
-    SSA keeps projects scalable, organized, and professional long-term.
-  </p>
-</div>
-
-<div class="card">
-  <h2>Services</h2>
-  <p>
-    • Paid scripting commissions<br>
-    • Roblox game systems & mechanics<br>
-    • Script optimization & improvements<br>
-    • Bug fixing & refactoring<br>
-    • Long-term collaboration
+    This results in <strong>better performance</strong>,
+    <strong>more control over scripts</strong>,
+    and <strong>easier debugging & scalability</strong>.
   </p>
 </div>
 
@@ -297,27 +265,26 @@ footer {
 </div>
 
 <div class="card">
-  <h2>Showcase & Free Collaboration</h2>
+  <h2>Showcase & Free Collaborations</h2>
   <p>
-    I’m open to <strong>free collaborations</strong> with other developers to create and record
-    real in-game showcases that highlight <strong>both of our skills</strong>.
+    I’m also open to <strong>free collaborations</strong> with other developers
+    to record and showcase real gameplay systems.
     <br><br>
     Examples:
     <br>
-    • Animators – I script systems that use your animations in real gameplay<br>
-    • UI Designers – I integrate UI into functional systems<br>
-    • Builders – I script mechanics inside your environments<br>
-    • VFX Artists – I hook effects into live systems
+    • Animators — I script systems that use your animations<br>
+    • UI designers — I integrate UI into functional gameplay<br>
+    • Builders — I script mechanics inside your environments<br>
+    • VFX artists — I connect effects to live systems
     <br><br>
-    Showcases may be featured here (with permission) as real-world examples
-    of professional teamwork and development.
+    These collaborations help showcase both of our skills professionally.
   </p>
 </div>
 
 <div class="card">
   <h2>Let’s Work Together</h2>
   <p>
-    If you’re looking for a reliable scripter who cares about structure,
+    If you’re looking for a reliable scripter who values structure,
     performance, and long-term quality, feel free to reach out.
     <br><br>
     <strong>Let’s build something great 🚀</strong>
@@ -327,12 +294,12 @@ footer {
 </section>
 
 <footer>
-  Discord: <strong>ripper</strong> · ID: <strong>1050130997204754452</strong>
+  Discord: <strong>ripperhub</strong> · ID: <strong>1050130997204754452</strong>
 </footer>
 
 <script>
 function copyDiscord() {
-  navigator.clipboard.writeText("ripper").then(() => {
+  navigator.clipboard.writeText("ripperhub").then(() => {
     const toast = document.getElementById("toast");
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 1800);
