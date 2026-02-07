@@ -1,310 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ripper | Roblox Scripter Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ripper | Roblox Systems Architect</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg-dark: #05050a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --accent-glow: rgba(0, 242, 255, 0.3);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-body {
-  background: radial-gradient(circle at top, #1a1a2e, #0b0b14);
-  color: #fff;
-  overflow-x: hidden;
-}
+        /* Interactive Particle Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #05050a 100%);
+        }
 
-/* Animated background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(0,229,255,0.04),
-    rgba(0,229,255,0.04) 2px,
-    transparent 2px,
-    transparent 10px
-  );
-  animation: bgMove 30s linear infinite;
-  z-index: -1;
-}
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #05050a; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--primary), var(--secondary)); 
+            border-radius: 10px; 
+        }
 
-@keyframes bgMove {
-  from { transform: translateX(0); }
-  to { transform: translateX(300px); }
-}
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
 
-/* Header */
-header {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
-}
+        /* Header / Hero */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
 
-.hero {
-  animation: fadeUp 1.4s ease forwards;
-}
+        .hero-glitch {
+            font-size: clamp(3.5rem, 12vw, 6rem);
+            font-weight: 700;
+            color: white;
+            position: relative;
+            text-shadow: 0 0 30px var(--accent-glow);
+            margin-bottom: 10px;
+        }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        .hero-glitch span { color: var(--primary); }
 
-h1 {
-  font-size: 3.6rem;
-  font-weight: 700;
-}
+        .experience-tag {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            display: block;
+        }
 
-h1 span {
-  color: #00e5ff;
-  text-shadow: 0 0 18px rgba(0,229,255,0.8);
-}
+        .badge {
+            display: inline-block;
+            padding: 10px 28px;
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: 0 0 15px var(--accent-glow);
+            background: rgba(0, 242, 255, 0.05);
+            animation: pulse 2s infinite;
+        }
 
-.subtitle {
-  margin-top: 10px;
-  font-size: 1.25rem;
-  opacity: 0.9;
-}
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px var(--accent-glow); transform: scale(1); }
+            50% { box-shadow: 0 0 25px var(--accent-glow); transform: scale(1.02); }
+            100% { box-shadow: 0 0 5px var(--accent-glow); transform: scale(1); }
+        }
 
-.badge {
-  display: inline-block;
-  margin: 18px 0 25px;
-  padding: 7px 18px;
-  border-radius: 25px;
-  background: rgba(0,229,255,0.15);
-  color: #00e5ff;
-  font-weight: 600;
-  box-shadow: 0 0 25px rgba(0,229,255,0.35);
-}
+        /* Buttons */
+        .btn-container { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
 
-.btn {
-  display: inline-block;
-  padding: 14px 38px;
-  margin: 10px;
-  background: linear-gradient(135deg, #00e5ff, #4facfe);
-  color: #000;
-  border-radius: 40px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
-  transition: 0.3s ease;
-}
+        .btn {
+            position: relative;
+            padding: 16px 38px;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
 
-.btn:hover {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 25px 50px rgba(0,229,255,0.6);
-}
+        .btn-primary {
+            background: var(--primary);
+            color: #000;
+            border: none;
+        }
 
-/* Sections */
-section {
-  padding: 90px 12%;
-}
+        .btn:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 242, 255, 0.3);
+        }
 
-.card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 22px;
-  padding: 42px;
-  margin-bottom: 45px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-  transition: 0.35s ease;
-}
+        /* Sections */
+        section { padding: 120px 15%; }
 
-.card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 35px 70px rgba(0,229,255,0.25);
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
 
-h2 {
-  color: #00e5ff;
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-}
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 28px;
+            padding: 45px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s ease;
+            backdrop-filter: blur(15px);
+        }
 
-ul {
-  list-style: none;
-}
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transition: 0.8s;
+        }
 
-ul li {
-  margin-bottom: 12px;
-  padding-left: 26px;
-  position: relative;
-}
+        .card:hover::after { left: 100%; }
 
-ul li::before {
-  content: "⚡";
-  position: absolute;
-  left: 0;
-  color: #00e5ff;
-}
+        .card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(0, 242, 255, 0.4);
+            transform: translateY(-15px);
+        }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 40px;
-  opacity: 0.75;
-}
+        h2 { font-size: 2.2rem; margin-bottom: 30px; color: var(--primary); }
 
-/* Toast */
-.toast {
-  visibility: hidden;
-  opacity: 0;
-  position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,229,255,0.9);
-  color: #000;
-  padding: 12px 26px;
-  border-radius: 25px;
-  font-weight: 600;
-  box-shadow: 0 12px 30px rgba(0,229,255,0.4);
-  transition: opacity 0.3s ease;
-}
+        .skill-list li {
+            list-style: none;
+            margin-bottom: 18px;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1rem;
+        }
 
-.toast.show {
-  visibility: visible;
-  opacity: 1;
-}
+        .skill-list li::before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
 
-@media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
-  section { padding: 70px 8%; }
-}
-</style>
+        /* Status Bar for SSA Section */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.8);
+        }
+
+        .copy-info { opacity: 0.6; font-size: 0.9rem; margin-top: 15px; }
+
+        .toast {
+            visibility: hidden;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #000;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,242,255,0.5);
+        }
+
+        .toast.show { visibility: visible; animation: slideUp 0.4s ease, slideDown 0.4s ease 2.6s; }
+
+        @keyframes slideUp { from { bottom: -50px; opacity: 0; } to { bottom: 40px; opacity: 1; } }
+        @keyframes slideDown { from { bottom: 40px; opacity: 1; } to { bottom: -50px; opacity: 0; } }
+
+        @media (max-width: 768px) {
+            section { padding: 80px 8%; }
+            .hero-glitch { font-size: 3.2rem; }
+        }
+    </style>
 </head>
-
 <body>
 
+<canvas id="particles"></canvas>
+
 <header>
-  <div class="hero">
-    <h1><span>Ripper</span> Portfolio</h1>
-    <p class="subtitle">Intermediate → Beginner-Advanced Roblox Scripter</p>
-    <div class="badge">PAID COMMISSIONS OPEN</div><br>
-
-    <a class="btn" href="https://discord.com/users/1050130997204754452" target="_blank">
-      Open Discord Profile
-    </a>
-
-    <a class="btn" href="discord://-/users/1050130997204754452">
-      Open in Discord App
-    </a>
-
-    <button class="btn" onclick="copyDiscord()">Copy Discord Username</button>
-
-    <p style="margin-top:14px; opacity:0.85; font-size:0.95rem;">
-      Opens my Discord profile — feel free to add me or send a message directly.
-    </p>
-
-    <div id="toast" class="toast">Copied: ripperhub</div>
-  </div>
+    <div data-aos="zoom-in" data-aos-duration="1200">
+        <span class="experience-tag">INTERMEDIATE – ADVANCED</span>
+        <h1 class="hero-glitch">RIPPER<span>.EXE</span></h1>
+        <div class="badge">AVAILABLE FOR COMMISSIONS</div>
+        
+        <div class="btn-container">
+            <a class="btn btn-primary" href="https://discord.com/users/1050130997204754452" target="_blank">Discord Profile</a>
+            <a class="btn" href="discord://-/users/1050130997204754452">Open App</a>
+            <button class="btn" onclick="copyDiscord()">Copy Username</button>
+        </div>
+    </div>
 </header>
 
-<section>
+<section id="about">
+    <div class="grid">
+        <div class="card" data-aos="fade-up">
+            <h2>The Developer</h2>
+            <p>I am <strong>Ripper</strong>, a specialized Roblox Systems Architect. While many take years to reach this stage, I have spent the last <strong>2.5 months</strong> in deep, daily technical immersion—mastering high-level engineering patterns and game optimization.</p>
+            <br>
+            <p>I focus on <strong>Professional-Grade Scripting</strong> where performance isn't just a goal, it's a requirement.</p>
+        </div>
 
-<div class="card">
-  <h2>About Me</h2>
-  <p>
-    I’m <strong>Ripper</strong>, an <strong>intermediate to beginner-advanced Roblox scripter</strong>
-    focused on building efficient, scalable, and professional game systems.
-    <br><br>
-    I offer <strong>paid scripting commissions</strong> to continue improving as a developer
-    while delivering clean, reliable systems for real projects.
-    <br><br>
-    💰 <strong>Affordable & negotiable pricing</strong> depending on system complexity.
-  </p>
-</div>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <h2>Technical Capabilities</h2>
+            <ul class="skill-list">
+                <li>DataStore & ProfileService Frameworks</li>
+                <li>Global Progression & Economy Systems</li>
+                <li>Modular Simulator Mechanics</li>
+                <li>Advanced Component Systems</li>
+                <li>Complex Shop & UI Integration</li>
+                <li>Optimization & Systematic Refactoring</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-<div class="card">
-  <h2>What I Can Do</h2>
-  <ul>
-    <li>DataStore saving & loading systems</li>
-    <li>Player stats & progression systems</li>
-    <li>Currency, shop & upgrade systems</li>
-    <li>Simulator-style mechanics</li>
-    <li>Core gameplay logic & features</li>
-    <li>Bug fixing, optimization & refactoring</li>
-    <li>Many other custom systems depending on project needs</li>
-  </ul>
-  <p style="margin-top:14px; opacity:0.85;">
-    ⚠️ I currently do not take <strong>vehicle-related systems</strong>
-    (advanced driving, car physics, etc.).
-  </p>
-</div>
+<section style="padding-top: 0;">
+    <div class="card" data-aos="zoom-in-up">
+        <h2>Single Script Architecture (SSA)</h2>
+        <p>I build games using a centralized logic flow. This modular approach ensures your project is easy to manage, incredibly fast, and ready for thousands of players without lag.</p>
+        
+        <div class="stat-grid">
+            <div class="stat-item">
+                <h4 style="color:var(--primary)">0.01ms</h4>
+                <p style="font-size: 0.8rem;">Average Latency</p>
+            </div>
+            <div class="stat-item">
+                <h4 style="color:var(--primary)">Clean</h4>
+                <p style="font-size: 0.8rem;">Memory Management</p>
+            </div>
+            <div class="stat-item">
+                <h4 style="color:var(--primary)">Scalable</h4>
+                <p style="font-size: 0.8rem;">Production Ready</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="card">
-  <h2>Architecture & Performance</h2>
-  <p>
-    I commonly use <strong>SSA (Single Script Architecture)</strong>,
-    meaning game logic is centralized into structured modules.
-    <br><br>
-    This results in <strong>better performance</strong>,
-    <strong>more control over scripts</strong>,
-    and <strong>easier debugging & scalability</strong>.
-  </p>
-</div>
+<section id="collab">
+    <div class="grid">
+        <div class="card" data-aos="fade-right">
+            <h2>Payment Models</h2>
+            <p>Professional work deserves professional handling. I accept:</p>
+            <ul class="skill-list" style="margin-top:20px;">
+                <li><strong>PayPal</strong> (USD)</li>
+                <li><strong>Robux</strong> (Group Funds / Tax Covered)</li>
+            </ul>
+            <p style="margin-top:20px; font-size: 0.8rem; opacity: 0.5;">Pricing is negotiable based on system complexity and timeline.</p>
+        </div>
 
-<div class="card">
-  <h2>Payment Methods</h2>
-  <p>
-    • <strong>PayPal</strong><br>
-    • <strong>Robux</strong><br><br>
-    Payment method can be discussed beforehand.
-  </p>
-</div>
-
-<div class="card">
-  <h2>Showcase & Free Collaborations</h2>
-  <p>
-    I’m also open to <strong>free collaborations</strong> with other developers
-    to record and showcase real gameplay systems.
-    <br><br>
-    Examples:
-    <br>
-    • Animators — I script systems that use your animations<br>
-    • UI designers — I integrate UI into functional gameplay<br>
-    • Builders — I script mechanics inside your environments<br>
-    • VFX artists — I connect effects to live systems
-    <br><br>
-    These collaborations help showcase both of our skills professionally.
-  </p>
-</div>
-
-<div class="card">
-  <h2>Let’s Work Together</h2>
-  <p>
-    If you’re looking for a reliable scripter who values structure,
-    performance, and long-term quality, feel free to reach out.
-    <br><br>
-    <strong>Let’s build something great 🚀</strong>
-  </p>
-</div>
-
+        <div class="card" data-aos="fade-left">
+            <h2>Free Collaborations</h2>
+            <p>I am actively seeking high-skill collaborators for portfolio showcases. If you excel in these areas, let's connect:</p>
+            <ul class="skill-list" style="margin-top:20px;">
+                <li>VFX & Particle Artists</li>
+                <li>3D Animators</li>
+                <li>UI/UX Designers</li>
+            </ul>
+        </div>
+    </div>
 </section>
 
 <footer>
-  Discord: <strong>ripperhub</strong> · ID: <strong>1050130997204754452</strong>
+    <div data-aos="fade-up">
+        <h3>RIPPER ARCHIVES</h3>
+        <p class="copy-info">Est. 2026 · Specialized in Luau Game Systems</p>
+        <p style="margin-top:20px; font-weight: bold; color: var(--primary);">User ID: 1050130997204754452</p>
+    </div>
 </footer>
 
+<div id="toast" class="toast">USERNAME COPIED: ripperhub</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-function copyDiscord() {
-  navigator.clipboard.writeText("ripperhub").then(() => {
-    const toast = document.getElementById("toast");
-    toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 1800);
-  });
-}
+    AOS.init({ duration: 1000, once: true });
+
+    function copyDiscord() {
+        navigator.clipboard.writeText("ripperhub").then(() => {
+            const toast = document.getElementById("toast");
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3000);
+        });
+    }
+
+    // High Performance Particle Engine
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function init() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        for (let i = 0; i < 80; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 0.5,
+                dx: (Math.random() - 0.5) * 0.8,
+                dy: (Math.random() - 0.5) * 0.8,
+                color: Math.random() > 0.5 ? '#00f2ff' : '#7000ff'
+            });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = 0.3;
+            ctx.fill();
+            
+            p.x += p.dx;
+            p.y += p.dy;
+
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        });
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    draw();
 </script>
 
 </body>
