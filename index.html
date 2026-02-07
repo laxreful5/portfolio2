@@ -165,6 +165,7 @@
             border-radius: 50px;
             font-weight: 700;
             transition: 0.3s;
+            z-index: 999;
         }
         .toast.show { visibility: visible; }
 
@@ -194,7 +195,7 @@
             <a href="https://discord.com/users/1050130997204754452" target="_blank" class="btn btn-main">Discord Profile</a>
             <button onclick="copyDiscord()" class="btn btn-outline">Copy Username</button>
         </div>
-        <p style="margin-top: 20px; opacity: 0.7;">Add me on Discord to discuss your project!</p>
+        <p style="margin-top: 20px; opacity: 0.7;">Feel free to add me to talk about your project!</p>
     </div>
 </header>
 
@@ -202,57 +203,57 @@
     <div class="card" data-aos="fade-up">
         <h2>About Me</h2>
         <p>
-            Hey! I’m <strong>Ripper</strong>. I’ve spent the last 2.5 months diving deep into Roblox scripting every single day. I’ve quickly moved from the basics to <strong>Intermediate-Advanced systems</strong>. 
+            Hey! I’m <strong>Ripper</strong>. Over the past 2.5 months, I've been scripting on Roblox every single day, pushing myself from the basics straight into <strong>Intermediate-Advanced systems</strong>. 
             <br><br>
-            I focus on making scripts that are clean, professional, and don't lag your game. I’m currently taking <strong>paid commissions</strong> to help developers bring their ideas to life while I continue to sharpen my skills.
+            I focus on creating scripts that are clean, professional, and optimized so they don't lag your game. I’m currently taking <strong>paid commissions</strong> to help developers build their dreams while I continue to improve my own skills.
         </p>
     </div>
 
     <div class="card" data-aos="fade-up">
         <h2>What I Can Script</h2>
         <ul>
-            <li>DataStore systems (Saving/Loading stats)</li>
+            <li>DataStore systems (Saving and loading player stats)</li>
             <li>Currency, Shops, and Inventory systems</li>
             <li>Simulator mechanics & Core gameplay loops</li>
             <li>Player progression (Leveling, XP, Ranks)</li>
-            <li>Bug fixing and optimizing old code</li>
-            <li>Custom systems tailored to your needs</li>
+            <li>Bug fixing and cleaning up old/messy code</li>
+            <li>Custom systems built exactly how you want them</li>
         </ul>
         <p style="margin-top:15px; font-size: 0.9rem; opacity: 0.8;">
-            <i>Note: I don't handle advanced vehicle physics or car systems yet.</i>
+            <i>Note: I don't handle advanced vehicle physics or car systems at this time.</i>
         </p>
     </div>
 
     <div class="card" data-aos="fade-up">
         <h2>My Workflow (SSA)</h2>
         <p>
-            I use <strong>Single Script Architecture</strong>. Instead of having hundreds of scripts scattered everywhere, I organize everything into clean modules. 
+            I use <strong>Single Script Architecture</strong>. Instead of having random scripts all over the place, I organize your game into clean, professional modules. 
             <br><br>
-            <strong>Why this helps you:</strong> It makes the game run faster, makes it way easier to fix bugs, and keeps the project organized as it grows bigger.
+            <strong>The benefit for you:</strong> Your game runs much smoother, bugs are way easier to find and fix, and the project stays organized as you add more features.
         </p>
     </div>
 
     <div class="card" data-aos="fade-up">
-        <h2>Payment</h2>
+        <h2>Payment Methods</h2>
         <p>
-            I'm flexible with pricing depending on how complex your system is. I accept:
+            I'm happy to discuss pricing based on what you need built. I accept:
             <br><br>
-            • <strong>PayPal</strong><br>
-            • <strong>Robux</strong>
+            • <strong>PayPal (€ Euro)</strong> - <i>Note: PayPal automatically converts other currencies like USD to Euro for me, so don't worry!</i><br>
+            • <strong>Robux</strong> (Group funds or via gamepass with tax covered)
         </p>
     </div>
 
     <div class="card" data-aos="fade-up">
         <h2>Free Collabs</h2>
         <p>
-            I'm also down for <strong>free collaborations</strong>! If you're a talented Animator, Builder, or UI Designer, let’s team up to script something cool we can both use in our portfolios.
+            I am always looking for <strong>free collaborations</strong> with other talented creators! If you are a Builder, UI Designer, or Animator, let's team up to make a cool system that we can both show off.
         </p>
     </div>
 </section>
 
 <footer>
     <p>Discord: <strong>ripperhub</strong> | ID: 1050130997204754452</p>
-    <p style="margin-top:10px;">Let's build something great! 🚀</p>
+    <p style="margin-top:10px;">Let's build something great together! 🚀</p>
 </footer>
 
 <div id="toast" class="toast">Copied: ripperhub</div>
@@ -284,8 +285,8 @@
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
             this.size = Math.random() * 2;
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.speedY = (Math.random() - 0.5) * 0.4;
         }
         update() {
             this.x += this.speedX;
