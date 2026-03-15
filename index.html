@@ -115,10 +115,17 @@
         .works-panel.active { display: block; }
 
         .works-panel-note {
-            font-size: 0.9rem; color: rgba(255,255,255,0.45);
-            margin-bottom: 28px; font-style: italic;
-            border-left: 2px solid rgba(0,242,255,0.3);
-            padding-left: 14px;
+            display: inline-block;
+            font-size: 0.88rem;
+            font-style: italic;
+            font-weight: 600;
+            color: #00f2ff;
+            margin-bottom: 28px;
+            padding: 10px 16px;
+            background: rgba(0,242,255,0.07);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            animation: notePulse 2.5s ease-in-out infinite;
         }
 
         /* ── Works grid ── */
@@ -182,6 +189,18 @@
         footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); opacity: 0.7; }
 
         @keyframes fadeInUp { from { bottom: 0; opacity: 0; } to { bottom: 40px; opacity: 1; } }
+
+        @keyframes notePulse {
+            0%   { box-shadow: 0 0 0   rgba(0,242,255,0);    border-color: var(--primary); color: #00f2ff; }
+            50%  { box-shadow: 0 0 14px rgba(0,242,255,0.45); border-color: #80f9ff;        color: #ffffff; }
+            100% { box-shadow: 0 0 0   rgba(0,242,255,0);    border-color: var(--primary); color: #00f2ff; }
+        }
+
+        @keyframes uiNotePulse {
+            0%   { box-shadow: 0 0 0   rgba(255,180,0,0);    border-color: #ffb400; color: #ffc933; }
+            50%  { box-shadow: 0 0 14px rgba(255,180,0,0.45); border-color: #ffd97a; color: #fff;    }
+            100% { box-shadow: 0 0 0   rgba(255,180,0,0);    border-color: #ffb400; color: #ffc933; }
+        }
 
         @media (max-width: 768px) { section { padding: 60px 8%; } .hero-title { font-size: 3.5rem; } }
     </style>
@@ -286,9 +305,21 @@
                     <span class="work-meta">System · DataStore</span>
                     <span class="work-title">Inventory System</span>
                     <p class="work-desc">
-                        A full inventory system that saves and loads through DataStore also included small spawning service to actually showcase it.
+                        A full inventory system that saves and loads through DataStore. Items persist across sessions for every player.
                         <br><br>
-                        <em style="color:rgba(255,255,255,0.4); font-size:0.85rem;">Note: ignore the UI — I'm not a UI designer lol, focus on it actual working .</em>
+                        <span style="
+                            display:inline-block;
+                            margin-top:8px;
+                            padding:9px 14px;
+                            background:rgba(255,180,0,0.09);
+                            border-left:3px solid #ffb400;
+                            border-radius:0 10px 10px 0;
+                            font-size:0.85rem;
+                            font-style:italic;
+                            font-weight:600;
+                            color:#ffc933;
+                            animation:uiNotePulse 2.5s ease-in-out infinite;
+                        ">⚠️ Ignore the UI — I'm not a UI designer lol. Focus on it <strong style="color:#fff;font-style:normal;">actually working</strong>. Better UI coming soon!</span>
                     </p>
                     <div class="work-tags">
                         <span class="work-tag">DataStore</span>
@@ -303,6 +334,7 @@
                             &lt;/&gt; View Source
                         </a>
                     </div>
+                    <p class="work-img-note">Recorded in Roblox Studio — 15 Mar 2026</p>
                 </div>
             </div>
 
