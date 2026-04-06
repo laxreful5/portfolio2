@@ -84,7 +84,7 @@
         ul li { margin-bottom: 15px; padding-left: 30px; position: relative; }
         ul li::before { content: "\25b9"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
 
-        .disclaimer { margin-top: 15px; font-size: 0.85rem; opacity: 0.6; color: #ff4d4d; }
+        .disclaimer { margin-top: 15px; font-size: 0.85rem; opacity: 0.8; color: #ff4d4d; font-weight: 600; }
 
         .tool-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
         .tool-tag {
@@ -93,18 +93,26 @@
         }
         .tool-tag:hover { background: rgba(0,242,255,0.2); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,242,255,0.2); }
 
+        .works-tabs { display: flex; gap: 12px; margin-bottom: 36px; flex-wrap: wrap; }
+        .works-tab-btn {
+            padding: 12px 28px; background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 50px;
+            color: rgba(255,255,255,0.55); font-size: 0.95rem; font-weight: 600;
+            cursor: pointer; transition: 0.3s ease;
+        }
+        .works-tab-btn.active {
+            background: rgba(0,242,255,0.12); border-color: var(--primary);
+            color: var(--primary); box-shadow: 0 0 18px rgba(0,242,255,0.2);
+        }
+
+        .works-panel { display: none; }
+        .works-panel.active { display: block; }
+
         .works-panel-note {
-            display: inline-block;
-            font-size: 0.88rem;
-            font-style: italic;
-            font-weight: 600;
-            color: #00f2ff;
-            margin-bottom: 28px;
-            padding: 10px 16px;
-            background: rgba(0, 242, 255, 0.07);
-            border-left: 3px solid var(--primary);
-            border-radius: 0 10px 10px 0;
-            animation: notePulse 2.5s ease-in-out infinite;
+            display: inline-block; font-size: 0.88rem; font-style: italic; font-weight: 600;
+            color: #00f2ff; margin-bottom: 28px; padding: 10px 16px;
+            background: rgba(0,242,255,0.07); border-left: 3px solid var(--primary);
+            border-radius: 0 10px 10px 0; animation: notePulse 2.5s ease-in-out infinite;
         }
 
         .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
@@ -119,22 +127,10 @@
             transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,242,255,0.12);
         }
 
-        .work-video-container {
-            width: 100%;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            background: #000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .work-video {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .work-video-container { width: 100%; aspect-ratio: 16/9; background: #000; }
+        .work-video { width: 100%; height: 100%; border: none; }
 
         .work-info { padding: 28px 32px 32px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
-
         .work-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; color: #fff; }
         .work-meta { font-size: 0.85rem; color: var(--primary); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
         .work-desc { font-size: 0.95rem; opacity: 0.75; line-height: 1.6; flex: 1; }
@@ -145,15 +141,11 @@
             border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: var(--primary);
         }
 
-        .work-btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; align-items: center; }
-
         .work-link {
-            display: inline-flex; align-items: center; gap: 8px;
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
             padding: 12px 24px; background: rgba(0,242,255,0.08); border: 1px solid rgba(0,242,255,0.3);
-            border-radius: 12px; color: var(--primary); font-weight: 600; font-size: 0.9rem;
-            text-decoration: none; transition: 0.3s ease;
+            border-radius: 12px; color: var(--primary); font-weight: 600; text-decoration: none;
         }
-        .work-link:hover { background: rgba(0,242,255,0.18); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,242,255,0.2); }
 
         .toast {
             visibility: hidden; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
@@ -165,11 +157,10 @@
         footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); opacity: 0.7; }
 
         @keyframes fadeInUp { from { bottom: 0; opacity: 0; } to { bottom: 40px; opacity: 1; } }
-
         @keyframes notePulse {
-            0%   { box-shadow: 0 0 0   rgba(0,242,255,0);    border-color: var(--primary); color: #00f2ff; }
-            50%  { box-shadow: 0 0 14px rgba(0,242,255,0.45); border-color: #80f9ff;        color: #ffffff; }
-            100% { box-shadow: 0 0 0   rgba(0,242,255,0);    border-color: var(--primary); color: #00f2ff; }
+            0% { box-shadow: 0 0 0 rgba(0,242,255,0); border-color: var(--primary); }
+            50% { box-shadow: 0 0 14px rgba(0,242,255,0.45); border-color: #80f9ff; }
+            100% { box-shadow: 0 0 0 rgba(0,242,255,0); border-color: var(--primary); }
         }
 
         @media (max-width: 768px) { section { padding: 60px 8%; } .hero-title { font-size: 3.5rem; } }
@@ -195,86 +186,96 @@
     <div class="grid">
         <div class="card" data-aos="fade-up">
             <h2>About Me</h2>
-            <p>I'm <strong>Ripper</strong>. Over the past 5 months and a half I've been scripting on Roblox every single day, pushing myself deep into <strong>Roblox Luau</strong>.</p>
+            <p>I'm <strong>Ripper</strong>. For the past several months, I've been scripting on Roblox daily, mastering <strong>Roblox Luau</strong>.</p>
             <br>
-            <p>I take commissions to keep <strong>becoming better at scripting</strong> and to learn new concepts. My goal is to deliver solid results while constantly improving my skills.</p>
+            <p>My goal is to deliver high-quality, optimized scripts for your project while constantly pushing the limits of what I can create.</p>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="100">
             <h2>What I Can Do</h2>
             <ul>
-                <li>DataStore Handling (Saving stats, using ProfileStore)</li>
-                <li>Currency, Shops &amp; Inventories</li>
-                <li>Simulator mechanics &amp; Core loops</li>
-                <li>Player progression &amp; Leveling</li>
-                <li>Bug fixing &amp; Cleaning old code</li>
-                <li>Custom systems built for you</li>
+                <li>Advanced Inventory & System Design</li>
+                <li>Custom Stand/Ability Mechanics</li>
+                <li>DataStore Handling & ProfileStore</li>
+                <li>Core Simulator Loops</li>
+                <li>Single Script Architecture (SSA)</li>
+                <li>Bug fixing & Optimization</li>
             </ul>
-            <p class="disclaimer">&#9888;&#65039; Note: I do not take vehicle-related systems (advanced driving, car physics, etc.) at this time.</p>
+            <p class="disclaimer">&#9888;&#65039; Note: I only do the scripting in my showcases.</p>
         </div>
     </div>
 </section>
 
 <section style="padding-top:0;">
     <div class="card" data-aos="fade-up">
-        <h2>Tools I Use</h2>
-        <p>I work with VSC, a famous tool editor that makes coding easier, and Rojo for communication between Roblox Studio and VSC. Wally for installing packages, Git to post work on GitHub for easier access when multiple scripters work on the same project, Selene as a linting extension, and StyLua to style your code to make it more readable.</p>
+        <h2>Professional Workflow</h2>
+        <p>I use a modern development stack including VS Code for efficiency, Rojo for Studio sync, Git for version control, and StyLua to keep code industry-standard and readable.</p>
         <div class="tool-tags">
             <span class="tool-tag">VS Code</span>
             <span class="tool-tag">Rojo</span>
-            <span class="tool-tag">Git &amp; GitHub</span>
-            <span class="tool-tag">Wally</span>
-            <span class="tool-tag">Selene</span>
-            <span class="tool-tag">StyLua</span>
+            <span class="tool-tag">Git / GitHub</span>
+            <span class="tool-tag">Selene / StyLua</span>
         </div>
     </div>
 </section>
 
 <section style="padding-top:0;">
-    <div class="card" data-aos="fade-up">
-        <h2>My Workflow (SSA, OOP)</h2>
-        <p>I use <strong>Single Script Architecture</strong>. Instead of having random scripts everywhere, I organize your game into clean modules.</p>
-        <br>
-        <p>This makes your game run smoother, makes bugs easier to find, and keeps everything organized as you add new features. I also use OOP (Object Oriented Programming).</p>
+    <h2 data-aos="fade-up" style="margin-bottom:30px;">Portfolio</h2>
+
+    <div class="works-tabs" data-aos="fade-up">
+        <button class="works-tab-btn active" onclick="switchTab('abilities', this)">🔥 Ability Systems</button>
+        <button class="works-tab-btn" onclick="switchTab('systems', this)">📦 Inventory & Systems</button>
     </div>
-</section>
 
-<section style="padding-top:0;">
-    <h2 data-aos="fade-up" style="margin-bottom:30px;">Works</h2>
-
-    <div class="works-panel active" id="panel-current">
-        <p class="works-panel-note" data-aos="fade-up">
-            I just started documenting my work — please expect the number of showcased projects to be low for now. More will be added as I go!
-        </p>
+    <div class="works-panel active" id="panel-abilities">
         <div class="works-grid">
-
             <div class="work-card" data-aos="fade-up">
                 <div class="work-video-container">
-                    <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
                 <div class="work-info">
-                    <div class="work-meta">Scripting</div>
-                    <div class="work-title">Custom Stand Summoning</div>
+                    <div class="work-meta">Scripted by me</div>
+                    <div class="work-title">Stand Summoning System</div>
                     <div class="work-desc">
-                        Working stand summoning works for any type of stand. Features a specialized animation controller that triggers <strong>unique custom player animations</strong> depending on which stand is currently being summoned, ensuring a distinct feel for every ability.
-                        <p class="disclaimer">Note: I only did the scripting. The animations and models are not made by me.</p>
-                        <p class="disclaimer">not making this open source sorry</p>
+                        Advanced stand summoning system that works for any stand type. Features unique animation controllers for every ability.
+                        <p class="disclaimer">UI and anims not made by me - I only did the scripting.</p>
                     </div>
                     <div class="work-tags">
                         <span class="work-tag">OOP</span>
-                        <span class="work-tag">SSA</span>
+                        <span class="work-tag">Ability Controller</span>
                     </div>
-                    <div class="work-btn-row">
-                        <a href="https://youtu.be/YAcVqIIFzCw" class="work-link" target="_blank">Watch Full Video</a>
-                    </div>
+                    <a href="https://youtu.be/YAcVqIIFzCw" class="work-link" target="_blank">View Project</a>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="works-panel" id="panel-systems">
+        <div class="works-grid">
+            <div class="work-card" data-aos="fade-up">
+                <div class="work-video-container">
+                    <iframe class="work-video" src="https://www.youtube.com/embed/QkkssarI0Wc?autoplay=1&mute=1&loop=1&playlist=QkkssarI0Wc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="work-info">
+                    <div class="work-meta">Scripted by me</div>
+                    <div class="work-title">Custom Inventory & Stand Systems</div>
+                    <div class="work-desc">
+                        A showcase featuring a custom inventory, a code redemption system, and a functional arrow system. This shows the backend logic for how you obtain stands in-game.
+                        <p class="disclaimer">UI and anims not made by me - I only did the scripting.</p>
+                    </div>
+                    <div class="work-tags">
+                        <span class="work-tag">Inventory</span>
+                        <span class="work-tag">Codes System</span>
+                        <span class="work-tag">Arrow Logic</span>
+                    </div>
+                    <a href="https://youtu.be/QkkssarI0Wc" class="work-link" target="_blank">View Project</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2026 Ripper | Built with Passion</p>
+    <p>&copy; 2026 Ripper | Roblox Scripting Specialist</p>
 </footer>
 
 <div id="toast" class="toast">Username Copied!</div>
@@ -283,65 +284,41 @@
 <script>
     AOS.init({ duration: 1000, once: true });
 
+    // Background Particles
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particles = [];
-
-    function initCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
+    function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     class Particle {
-        constructor() {
-            this.reset();
-        }
+        constructor() { this.reset(); }
         reset() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
             this.size = Math.random() * 2;
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.speedY = (Math.random() - 0.5) * 0.4;
             this.opacity = Math.random();
         }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-        }
-        draw() {
-            ctx.fillStyle = `rgba(0, 242, 255, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
+        update() { this.x += this.speedX; this.y += this.speedY; if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset(); }
+        draw() { ctx.fillStyle = `rgba(0, 242, 255, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
     }
-
-    function createParticles() {
-        particles = [];
-        for (let i = 0; i < 100; i++) particles.push(new Particle());
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', () => {
-        initCanvas();
-        createParticles();
-    });
-
-    initCanvas();
-    createParticles();
-    animate();
+    function createParticles() { particles = []; for(let i=0; i<80; i++) particles.push(new Particle()); }
+    function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
+    window.addEventListener('resize', ()=>{ initCanvas(); createParticles(); });
+    initCanvas(); createParticles(); animate();
 
     function copyDiscord() {
         navigator.clipboard.writeText('ripper.luau');
         const toast = document.getElementById('toast');
         toast.className = 'toast show';
-        setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+        setTimeout(() => { toast.className = 'toast'; }, 3000);
+    }
+
+    function switchTab(type, btn) {
+        document.querySelectorAll('.works-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.works-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById(`panel-${type}`).classList.add('active');
     }
 </script>
 
