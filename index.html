@@ -127,7 +127,7 @@
             animation: notePulse 2.5s ease-in-out infinite;
         }
 
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
 
         .work-card {
             background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
@@ -139,8 +139,11 @@
             transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,242,255,0.12);
         }
 
-        .work-thumb {
-            width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+        .work-preview {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border: none;
         }
 
         .work-info { padding: 28px 32px 32px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
@@ -164,17 +167,6 @@
             text-decoration: none; transition: 0.3s ease;
         }
         .work-link:hover { background: rgba(0,242,255,0.18); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,242,255,0.2); }
-
-        .work-link.source-link {
-            background: rgba(112,0,255,0.08); border-color: rgba(112,0,255,0.35);
-            color: #b47aff; font-size: 0.8rem; padding: 10px 16px;
-        }
-        .work-link.source-link:hover { background: rgba(112,0,255,0.18); box-shadow: 0 8px 20px rgba(112,0,255,0.2); }
-
-        .work-img-note {
-            font-size: 0.75rem; color: rgba(255,255,255,0.3);
-            font-style: italic; margin-top: 4px;
-        }
 
         .toast {
             visibility: hidden; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
@@ -274,48 +266,51 @@
         <div class="works-grid">
 
             <div class="work-card" data-aos="fade-up">
+                <iframe class="work-preview" src="https://streamable.com/e/y05cf7?autoplay=1&muted=1" allow="autoplay"></iframe>
                 <div class="work-info">
                     <div class="work-meta">Scripting</div>
                     <div class="work-title">Custom Stand Summoning</div>
                     <div class="work-desc">
-                        Working stand summoning works for any type of stand.
-                        <p class="disclaimer">Not making this open source, sorry.</p>
+                        Working stand summoning works for any type of stand. Features a specialized animation controller that triggers <strong>unique custom player animations</strong> depending on which stand is currently being summoned, ensuring a distinct feel for every ability.
+                        <p class="disclaimer">not making this open source sorry</p>
                     </div>
                     <div class="work-tags">
                         <span class="work-tag">OOP</span>
                         <span class="work-tag">SSA</span>
                     </div>
                     <div class="work-btn-row">
-                        <a href="https://streamable.com/y05cf7" class="work-link" target="_blank">View Video</a>
+                        <a href="https://streamable.com/y05cf7" class="work-link" target="_blank">Watch Video</a>
                     </div>
                 </div>
             </div>
 
-            <div class="work-card" data-aos="fade-up">
+            <div class="work-card" data-aos="fade-up" data-aos-delay="100">
+                <iframe class="work-preview" src="https://streamable.com/e/q70k4j?autoplay=1&muted=1" allow="autoplay"></iframe>
                 <div class="work-info">
-                    <div class="work-meta">Scripting / UI Implementation</div>
+                    <div class="work-meta">Scripting</div>
                     <div class="work-title">Inventory System</div>
-                    <div class="work-desc">A clean, module-based inventory system using Object Oriented Programming (OOP). Supports item stacking, metadata, and dynamic UI updates.</div>
+                    <div class="work-desc">Advanced inventory handling with full data persistence. Optimized for performance and high player counts.</div>
                     <div class="work-tags">
-                        <span class="work-tag">OOP</span>
-                        <span class="work-tag">Data Management</span>
+                        <span class="work-tag">DataStore</span>
+                        <span class="work-tag">UI</span>
                     </div>
                     <div class="work-btn-row">
-                        <a href="https://streamable.com/q70k4j" class="work-link" target="_blank">View Video</a>
+                        <a href="https://streamable.com/q70k4j" class="work-link" target="_blank">Watch Video</a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
     <div class="works-panel" id="panel-past">
         <div class="works-grid">
-        </div>
+            </div>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2024 Ripper. All rights reserved.</p>
+    <p>&copy; 2026 Ripper | Built with Passion</p>
 </footer>
 
 <div id="toast" class="toast">Username Copied!</div>
@@ -359,6 +354,7 @@
     }
 
     function createParticles() {
+        particles = [];
         for (let i = 0; i < 100; i++) particles.push(new Particle());
     }
 
@@ -368,7 +364,11 @@
         requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', initCanvas);
+    window.addEventListener('resize', () => {
+        initCanvas();
+        createParticles();
+    });
+
     initCanvas();
     createParticles();
     animate();
