@@ -93,28 +93,6 @@
         }
         .tool-tag:hover { background: rgba(0,242,255,0.2); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,242,255,0.2); }
 
-        .works-tabs { display: flex; gap: 12px; margin-bottom: 36px; flex-wrap: wrap; }
-        .works-tab-btn {
-            padding: 12px 28px; background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 50px;
-            color: rgba(255,255,255,0.55); font-size: 0.95rem; font-weight: 600;
-            cursor: pointer; transition: 0.3s ease;
-        }
-        .works-tab-btn.active {
-            background: rgba(0,242,255,0.12); border-color: var(--primary);
-            color: var(--primary); box-shadow: 0 0 18px rgba(0,242,255,0.2);
-        }
-
-        .works-panel { display: none; }
-        .works-panel.active { display: block; }
-
-        .works-panel-note {
-            display: inline-block; font-size: 0.88rem; font-style: italic; font-weight: 600;
-            color: #00f2ff; margin-bottom: 28px; padding: 10px 16px;
-            background: rgba(0,242,255,0.07); border-left: 3px solid var(--primary);
-            border-radius: 0 10px 10px 0; animation: notePulse 2.5s ease-in-out infinite;
-        }
-
         .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
 
         .work-card {
@@ -135,10 +113,10 @@
         .work-meta { font-size: 0.85rem; color: var(--primary); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
         .work-desc { font-size: 0.95rem; opacity: 0.75; line-height: 1.6; flex: 1; }
 
-        .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
         .work-tag {
-            padding: 5px 14px; background: rgba(0,242,255,0.08); border: 1px solid rgba(0,242,255,0.2);
-            border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: var(--primary);
+            display: inline-block; padding: 5px 14px; background: rgba(0,242,255,0.08); 
+            border: 1px solid rgba(0,242,255,0.2); border-radius: 8px; font-size: 0.8rem; 
+            font-weight: 600; color: var(--primary); margin-right: 5px; margin-top: 5px;
         }
 
         .work-link {
@@ -157,11 +135,6 @@
         footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); opacity: 0.7; }
 
         @keyframes fadeInUp { from { bottom: 0; opacity: 0; } to { bottom: 40px; opacity: 1; } }
-        @keyframes notePulse {
-            0% { box-shadow: 0 0 0 rgba(0,242,255,0); border-color: var(--primary); }
-            50% { box-shadow: 0 0 14px rgba(0,242,255,0.45); border-color: #80f9ff; }
-            100% { box-shadow: 0 0 0 rgba(0,242,255,0); border-color: var(--primary); }
-        }
 
         @media (max-width: 768px) { section { padding: 60px 8%; } .hero-title { font-size: 3.5rem; } }
     </style>
@@ -186,91 +159,67 @@
     <div class="grid">
         <div class="card" data-aos="fade-up">
             <h2>About Me</h2>
-            <p>I'm <strong>Ripper</strong>. For the past several months, I've been scripting on Roblox daily, mastering <strong>Roblox Luau</strong>.</p>
+            <p>I'm <strong>Ripper</strong>. For the past several months, I've been scripting on Roblox every single day to master <strong>Luau</strong>.</p>
             <br>
-            <p>My goal is to deliver high-quality, optimized scripts for your project while constantly pushing the limits of what I can create.</p>
+            <p>I build clean, optimized systems that make games run smoothly. I'm always looking for new challenges to improve my skills.</p>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="100">
             <h2>What I Can Do</h2>
             <ul>
-                <li>Advanced Inventory & System Design</li>
-                <li>Custom Stand/Ability Mechanics</li>
-                <li>DataStore Handling & ProfileStore</li>
-                <li>Core Simulator Loops</li>
-                <li>Single Script Architecture (SSA)</li>
-                <li>Bug fixing & Optimization</li>
+                <li>Custom Ability & Stand Systems</li>
+                <li>Advanced Inventories & Shops</li>
+                <li>Code Redemption Systems</li>
+                <li>Data Saving & ProfileStore</li>
+                <li>Game Loops & Optimization</li>
             </ul>
-            <p class="disclaimer">&#9888;&#65039; Note: I only do the scripting in my showcases.</p>
+            <p class="disclaimer">&#9888;&#65039; Note: I only did the scripting for these projects.</p>
         </div>
     </div>
 </section>
 
-<section style="padding-top:0;">
-    <div class="card" data-aos="fade-up">
-        <h2>Professional Workflow</h2>
-        <p>I use a modern development stack including VS Code for efficiency, Rojo for Studio sync, Git for version control, and StyLua to keep code industry-standard and readable.</p>
-        <div class="tool-tags">
-            <span class="tool-tag">VS Code</span>
-            <span class="tool-tag">Rojo</span>
-            <span class="tool-tag">Git / GitHub</span>
-            <span class="tool-tag">Selene / StyLua</span>
-        </div>
-    </div>
-</section>
+<section id="works">
+    <h2 data-aos="fade-up" style="margin-bottom:40px;">My Works</h2>
+    <div class="works-grid">
 
-<section style="padding-top:0;">
-    <h2 data-aos="fade-up" style="margin-bottom:30px;">Portfolio</h2>
-
-    <div class="works-tabs" data-aos="fade-up">
-        <button class="works-tab-btn active" onclick="switchTab('abilities', this)">🔥 Ability Systems</button>
-        <button class="works-tab-btn" onclick="switchTab('systems', this)">📦 Inventory & Systems</button>
-    </div>
-
-    <div class="works-panel active" id="panel-abilities">
-        <div class="works-grid">
-            <div class="work-card" data-aos="fade-up">
-                <div class="work-video-container">
-                    <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="work-card" data-aos="fade-up">
+            <div class="work-video-container">
+                <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="work-info">
+                <div class="work-meta">All Scripted by me</div>
+                <div class="work-title">Custom Stand Summoning</div>
+                <div class="work-desc">
+                    This is a smooth system for summoning stands. It uses custom animations that change based on which stand you use to make the character feel alive.
+                    <p class="disclaimer">UI and animations weren't made by me, but I scripted the whole logic.</p>
                 </div>
-                <div class="work-info">
-                    <div class="work-meta">Scripted by me</div>
-                    <div class="work-title">Stand Summoning System</div>
-                    <div class="work-desc">
-                        Advanced stand summoning system that works for any stand type. Features unique animation controllers for every ability.
-                        <p class="disclaimer">UI and anims not made by me - I only did the scripting.</p>
-                    </div>
-                    <div class="work-tags">
-                        <span class="work-tag">OOP</span>
-                        <span class="work-tag">Ability Controller</span>
-                    </div>
-                    <a href="https://youtu.be/YAcVqIIFzCw" class="work-link" target="_blank">View Project</a>
+                <div class="work-tags">
+                    <span class="work-tag">Abilities</span>
+                    <span class="work-tag">Animation Control</span>
                 </div>
+                <a href="https://youtu.be/YAcVqIIFzCw" class="work-link" target="_blank">View Video</a>
             </div>
         </div>
-    </div>
 
-    <div class="works-panel" id="panel-systems">
-        <div class="works-grid">
-            <div class="work-card" data-aos="fade-up">
-                <div class="work-video-container">
-                    <iframe class="work-video" src="https://www.youtube.com/embed/QkkssarI0Wc?autoplay=1&mute=1&loop=1&playlist=QkkssarI0Wc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="work-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="work-video-container">
+                <iframe class="work-video" src="https://www.youtube.com/embed/QkkssarI0Wc?autoplay=1&mute=1&loop=1&playlist=QkkssarI0Wc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="work-info">
+                <div class="work-meta">All Scripted by me</div>
+                <div class="work-title">Custom Inventory, Codes and Arrow System</div>
+                <div class="work-desc">
+                    This shows off a working inventory, a system where you enter codes for rewards, and an arrow system that gives players their stands.
+                    <p class="disclaimer">UI and animations weren't made by me, but I scripted the whole logic.</p>
                 </div>
-                <div class="work-info">
-                    <div class="work-meta">Scripted by me</div>
-                    <div class="work-title">Custom Inventory & Stand Systems</div>
-                    <div class="work-desc">
-                        A showcase featuring a custom inventory, a code redemption system, and a functional arrow system. This shows the backend logic for how you obtain stands in-game.
-                        <p class="disclaimer">UI and anims not made by me - I only did the scripting.</p>
-                    </div>
-                    <div class="work-tags">
-                        <span class="work-tag">Inventory</span>
-                        <span class="work-tag">Codes System</span>
-                        <span class="work-tag">Arrow Logic</span>
-                    </div>
-                    <a href="https://youtu.be/QkkssarI0Wc" class="work-link" target="_blank">View Project</a>
+                <div class="work-tags">
+                    <span class="work-tag">Inventory</span>
+                    <span class="work-tag">Codes</span>
+                    <span class="work-tag">Arrow System</span>
                 </div>
+                <a href="https://youtu.be/QkkssarI0Wc" class="work-link" target="_blank">View Video</a>
             </div>
         </div>
+
     </div>
 </section>
 
@@ -312,13 +261,6 @@
         const toast = document.getElementById('toast');
         toast.className = 'toast show';
         setTimeout(() => { toast.className = 'toast'; }, 3000);
-    }
-
-    function switchTab(type, btn) {
-        document.querySelectorAll('.works-tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.works-panel').forEach(p => p.classList.remove('active'));
-        document.getElementById(`panel-${type}`).classList.add('active');
     }
 </script>
 
