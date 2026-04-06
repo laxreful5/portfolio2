@@ -26,6 +26,24 @@
             background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #05050a 100%);
         }
 
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; justify-content: center; gap: 10px;
+            padding: 18px 20px;
+            background: rgba(5, 5, 10, 0.7); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 242, 255, 0.08);
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.55); text-decoration: none;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;
+            text-transform: uppercase; padding: 8px 18px; border-radius: 50px;
+            transition: 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary); background: rgba(0,242,255,0.08);
+        }
+
         header {
             height: 100vh; display: flex; flex-direction: column;
             align-items: center; justify-content: center; text-align: center; padding: 20px;
@@ -68,6 +86,12 @@
         .btn:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(0, 242, 255, 0.3); }
 
         section { padding: 80px 15%; }
+        section:first-of-type { padding-top: 80px; }
+
+        .section-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--primary); margin-bottom: 12px; opacity: 0.7;
+        }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 
@@ -79,6 +103,7 @@
         .card:hover { background: rgba(255,255,255,0.07); border-color: rgba(0,242,255,0.4); transform: translateY(-10px); }
 
         h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 20px; color: var(--primary); }
+        h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
 
         ul { list-style: none; }
         ul li { margin-bottom: 15px; padding-left: 30px; position: relative; }
@@ -93,6 +118,47 @@
         }
         .tool-tag:hover { background: rgba(0,242,255,0.2); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,242,255,0.2); }
 
+        .method-block {
+            background: rgba(0,242,255,0.04); border: 1px solid rgba(0,242,255,0.15);
+            border-radius: 16px; padding: 20px 24px; margin-top: 16px;
+        }
+        .method-block h3 { color: var(--primary); margin-bottom: 6px; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
+        .method-block p { font-size: 0.92rem; opacity: 0.75; line-height: 1.7; }
+
+        /* WORKFLOW SECTION */
+        .workflow-tool-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--primary); margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+        .workflow-tool-desc { font-size: 0.88rem; opacity: 0.65; line-height: 1.6; }
+
+        /* PRICES SECTION */
+        .price-notice {
+            background: rgba(0,242,255,0.05); border: 1px solid rgba(0,242,255,0.2);
+            border-radius: 20px; padding: 30px 36px; margin-bottom: 30px; text-align: center;
+        }
+        .price-notice p { font-size: 1rem; opacity: 0.8; line-height: 1.8; }
+        .price-notice strong { color: var(--primary); }
+
+        .payment-methods { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .payment-badge {
+            display: flex; align-items: center; gap: 10px;
+            padding: 14px 28px; border-radius: 50px;
+            font-weight: 700; font-size: 0.95rem;
+            border: 1px solid rgba(0,242,255,0.3);
+            background: rgba(0,242,255,0.07); color: #fff; transition: 0.3s ease;
+        }
+        .payment-badge:hover { transform: translateY(-4px); background: rgba(0,242,255,0.14); }
+        .payment-badge .icon { font-size: 1.3rem; }
+
+        .price-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .price-card {
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px; padding: 32px; transition: 0.4s ease; backdrop-filter: blur(15px);
+        }
+        .price-card:hover { border-color: rgba(0,242,255,0.4); transform: translateY(-8px); background: rgba(255,255,255,0.06); }
+        .price-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .price-card-amount { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+        .price-card-desc { font-size: 0.88rem; opacity: 0.65; line-height: 1.6; }
+
+        /* WORKS */
         .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
 
         .work-card {
@@ -114,8 +180,8 @@
         .work-desc { font-size: 0.95rem; opacity: 0.75; line-height: 1.6; flex: 1; }
 
         .work-tag {
-            display: inline-block; padding: 5px 14px; background: rgba(0,242,255,0.08); 
-            border: 1px solid rgba(0,242,255,0.2); border-radius: 8px; font-size: 0.8rem; 
+            display: inline-block; padding: 5px 14px; background: rgba(0,242,255,0.08);
+            border: 1px solid rgba(0,242,255,0.2); border-radius: 8px; font-size: 0.8rem;
             font-weight: 600; color: var(--primary); margin-right: 5px; margin-top: 5px;
         }
 
@@ -136,12 +202,21 @@
 
         @keyframes fadeInUp { from { bottom: 0; opacity: 0; } to { bottom: 40px; opacity: 1; } }
 
-        @media (max-width: 768px) { section { padding: 60px 8%; } .hero-title { font-size: 3.5rem; } }
+        @media (max-width: 768px) { section { padding: 60px 8%; } .hero-title { font-size: 3.5rem; } nav { gap: 4px; } .nav-link { padding: 7px 12px; font-size: 0.72rem; } }
     </style>
 </head>
 <body>
 
 <canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#experience">Experience</a>
+    <a class="nav-link" href="#workflow">Workflow</a>
+    <a class="nav-link" href="#works">Works</a>
+    <a class="nav-link" href="#prices">Prices</a>
+</nav>
 
 <header>
     <div data-aos="zoom-in">
@@ -155,30 +230,66 @@
     </div>
 </header>
 
-<section>
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-label">Who I Am</div>
     <div class="grid">
         <div class="card" data-aos="fade-up">
             <h2>About Me</h2>
-            <p>I'm <strong>Ripper</strong>. For the past several months, I've been scripting on Roblox every single day to master <strong>Luau</strong>.</p>
+            <p>I'm <strong>Ripper</strong>. I've been scripting on Roblox every single day for the past <strong>5 months</strong> to get good at <strong>Luau</strong>.</p>
             <br>
-            <p>I build clean, optimized systems that make games run smoothly. I'm always looking for new challenges to improve my skills.</p>
+            <p>I build clean systems that just work. No messy code, no shortcuts. I'm always looking for new things to work on so I can keep getting better.</p>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="100">
             <h2>What I Can Do</h2>
             <ul>
-                <li>Custom Ability & Stand Systems</li>
-                <li>Advanced Inventories & Shops</li>
-                <li>Code Redemption Systems</li>
-                <li>Data Saving & ProfileStore</li>
-                <li>Game Loops & Optimization</li>
+                <li>PvP Systems</li>
+                <li>Data Saving</li>
+                <li>Simulator Mechanics</li>
+                <li>Advanced Inventories &amp; Shops</li>
+                <li>Game Loops &amp; Optimization</li>
+                <li>Custom Systems Built For You</li>
             </ul>
-            <p class="disclaimer">&#9888;&#65039; Note: I only did the scripting for these projects.</p>
+            <p class="disclaimer">&#9888;&#65039; Not doing vehicle systems or fps games.</p>
         </div>
     </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="section-label">How I Code</div>
+    <h2 data-aos="fade-up" style="margin-bottom: 30px;">My Approach</h2>
+    <div class="grid">
+        <div class="card" data-aos="fade-up">
+            <h2 style="font-size:1.3rem; margin-bottom:14px;">SSA — Single Script Architecture</h2>
+            <p style="opacity:0.75; font-size:0.95rem; line-height:1.8;">Instead of having random scripts thrown all over your game, SSA keeps everything in one organized place. Each feature lives in its own small module file — like a box that does one specific job. A single main script connects all the boxes together and runs everything. It makes the whole project way easier to manage, easier to fix when something breaks, and way easier to add new stuff later.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <h2 style="font-size:1.3rem; margin-bottom:14px;">OOP — Object Oriented Programming</h2>
+            <p style="opacity:0.75; font-size:0.95rem; line-height:1.8;">When something in the game needs to repeat itself — like different stands, different enemies,etc — I use OOP. I write the code once,  and then create as many copies of it as I need. Less repeated code, cleaner structure, and it scales well no matter how big the game gets.</p>
+        </div>
+    </div>
+</section>
+
+<!-- WORKFLOW -->
+<section id="workflow">
+    <div class="section-label">My Setup</div>
+    <h2 data-aos="fade-up" style="margin-bottom: 30px;">My Workflow</h2>
+    <div class="card" data-aos="fade-up" style="max-width: 800px;">
+        <p style="opacity:0.75; font-size:0.95rem; line-height:1.9;">
+            I write all my code in <span style="color:var(--primary); font-weight:700;">Visual Studio Code</span> instead of the default Roblox Studio editor — it's just way better for writing code. To get my code into Roblox, I use <span style="color:var(--primary); font-weight:700;">Rojo</span>, which syncs everything from VS Code into Studio automatically in real time, so I never have to copy-paste anything. I also use <span style="color:var(--primary); font-weight:700;">Selene</span> which checks my code while I write it and tells me if I'm making a mistake or writing something in a bad way, finally <span style="color:var(--primary); font-weight:700;">StyLua</span> handles all the formatting — it makes sure my code always looks clean and consistent without me having to think about it.
+        </p>
+    </div>
+</section>
+
+<!-- WORKS -->
 <section id="works">
-    <h2 data-aos="fade-up" style="margin-bottom:40px;">My Works</h2>
+    <div class="section-label">Projects</div>
+    <h2 data-aos="fade-up" style="margin-bottom:20px;">My Works</h2>
+    <div data-aos="fade-up" style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,200,0,0.07); border:1px solid rgba(255,200,0,0.3); border-radius:50px; padding:10px 22px; margin-bottom:36px;">
+        <span style="font-size:1rem;">⚠️</span>
+        <span style="font-size:0.85rem; color:rgba(255,210,0,0.9); font-weight:600;">I just started recording my work — please expect the amount of clips to be low.</span>
+    </div>
     <div class="works-grid">
 
         <div class="work-card" data-aos="fade-up">
@@ -189,14 +300,14 @@
                 <div class="work-meta">All Scripted by me</div>
                 <div class="work-title">Custom Stand Summoning</div>
                 <div class="work-desc">
-                    This is a smooth system for summoning stands. It uses custom animations that change based on which stand you use to make the character feel alive.
-                    <p class="disclaimer">UI and animations weren't made by me, but I scripted the whole logic.</p>
+                    A smooth system for summoning stands. player idle animation change based on which stand you use, so each one feels different and alive.
+                    <p class="disclaimer">UI and animations weren't made by me, but I scripted the whole thing.</p>
                 </div>
                 <div class="work-tags">
-                    <span class="work-tag">Abilities</span>
+                    <span class="work-tag">Stand</span>
                     <span class="work-tag">Animation Control</span>
                 </div>
-                <a href="https://youtu.be/YAcVqIIFzCw" class="work-link" target="_blank">View Video</a>
+                <a href="https://youtu.be/YAcVqIIFzCw" class="work-link" target="_blank">View Video ↗</a>
             </div>
         </div>
 
@@ -206,20 +317,60 @@
             </div>
             <div class="work-info">
                 <div class="work-meta">All Scripted by me</div>
-                <div class="work-title">Custom Inventory, Codes and Arrow System</div>
+                <div class="work-title">Inventory, Codes &amp; Arrow System</div>
                 <div class="work-desc">
-                    This shows off a working inventory, a system where you enter codes for rewards, and an arrow system that gives players their stands.
-                    <p class="disclaimer">UI and animations weren't made by me, but I scripted the whole logic.</p>
+                    A full working inventory, a code system where players type codes to get rewards, and an arrow system that gives players their stands.
+                    <p class="disclaimer">UI and animations weren't made by me, but I scripted the whole thing.</p>
                 </div>
                 <div class="work-tags">
                     <span class="work-tag">Inventory</span>
                     <span class="work-tag">Codes</span>
                     <span class="work-tag">Arrow System</span>
                 </div>
-                <a href="https://youtu.be/QkkssarI0Wc" class="work-link" target="_blank">View Video</a>
+                <a href="https://youtu.be/QkkssarI0Wc" class="work-link" target="_blank">View Video ↗</a>
             </div>
         </div>
 
+    </div>
+</section>
+
+<!-- PRICES -->
+<section id="prices">
+    <div class="section-label">Commission Info</div>
+    <h2 data-aos="fade-up" style="margin-bottom: 30px;">Prices</h2>
+
+    <div class="price-notice" data-aos="fade-up">
+        <p>Prices are <strong>not fixed</strong> — they depend on what you need. The bigger or more complex the job, the more it'll cost. Just message me and we'll figure out a fair price together.</p>
+        <div class="payment-methods">
+            <div class="payment-badge"><span class="icon">🟢</span> Robux</div>
+            <div class="payment-badge"><span class="icon">🔵</span> PayPal</div>
+        </div>
+    </div>
+
+    <div class="price-cards" data-aos="fade-up" data-aos-delay="100">
+        <div class="price-card">
+            <div class="price-card-title">Small Job</div>
+            <div class="price-card-amount">Low price</div>
+            <div class="price-card-desc">Simple systems, small fixes, quick scripts. Something you could describe in a few sentences.</div>
+        </div>
+        <div class="price-card">
+            <div class="price-card-title">Medium Job</div>
+            <div class="price-card-amount">Mid price</div>
+            <div class="price-card-desc">Multiple connected systems, data saving, inventories. Takes more planning and more time.</div>
+        </div>
+        <div class="price-card">
+            <div class="price-card-title">Big Job</div>
+            <div class="price-card-amount">Discussed in DMs</div>
+            <div class="price-card-desc">Full game systems, ability frameworks, complex mechanics. Price depends heavily on scope — just DM me.</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; text-align:center;" data-aos="fade-up">
+        <p style="opacity:0.6; margin-bottom: 20px;">Ready to start? Hit me up on Discord.</p>
+        <div class="btn-container" style="justify-content:center;">
+            <a class="btn btn-primary" href="https://discord.com/users/1050130997204754452" target="_blank">Message me on Discord</a>
+            <button class="btn" onclick="copyDiscord()">Copy Username</button>
+        </div>
     </div>
 </section>
 
@@ -255,6 +406,20 @@
     function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
     window.addEventListener('resize', ()=>{ initCanvas(); createParticles(); });
     initCanvas(); createParticles(); animate();
+
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+        });
+    });
 
     function copyDiscord() {
         navigator.clipboard.writeText('ripper.luau');
