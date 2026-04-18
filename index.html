@@ -118,6 +118,28 @@
         }
         .tool-tag:hover { background: rgba(0,242,255,0.2); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,242,255,0.2); }
 
+        .tool-tag-highlight {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(0,242,255,0.15), rgba(112,0,255,0.15));
+            border: 1px solid rgba(0,242,255,0.5);
+            border-radius: 12px; font-size: 0.95rem; font-weight: 700; color: #fff;
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-tag-highlight::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(0,242,255,0.1), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2.5s infinite;
+        }
+        .tool-tag-highlight span { color: var(--primary); }
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        .tool-tag-highlight:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,242,255,0.3); border-color: var(--primary); }
+
         /* WORKS */
         .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
 
@@ -224,6 +246,7 @@
                 <div class="tool-tag">Experience: 1 Year</div>
                 <div class="tool-tag">Age: 17</div>
                 <div class="tool-tag">TimeZone: UTC+1</div>
+                <div class="tool-tag-highlight">🎮 Contributed <span>3.9M</span> Visits</div>
             </div>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="100">
