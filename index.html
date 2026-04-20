@@ -1,394 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ripper | Roblox Scripter Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
-    <style>
-        :root {
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --bg-dark: #05050a;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --accent-glow: rgba(0, 242, 255, 0.3);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ripper · Luau Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c-bg: #060608;
+    --c-surface: #0d0d12;
+    --c-border: rgba(255,255,255,0.06);
+    --c-text: #e8e8f0;
+    --c-muted: rgba(232,232,240,0.45);
+    --c-accent: #00e5ff;
+    --c-accent2: #bf5af2;
+    --c-warn: #ff453a;
+    --c-green: #30d158;
+    --glow: 0 0 40px rgba(0,229,255,0.18);
+    --radius: 20px;
+  }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body { background-color: var(--bg-dark); color: #fff; overflow-x: hidden; line-height: 1.6; }
+  html { scroll-behavior: smooth; }
 
-        #particles {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #05050a 100%);
-        }
+  body {
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
 
-        /* NAV */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            display: flex; justify-content: center; gap: 10px;
-            padding: 18px 20px;
-            background: rgba(5, 5, 10, 0.7); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 242, 255, 0.08);
-        }
-        .nav-link {
-            color: rgba(255,255,255,0.55); text-decoration: none;
-            font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;
-            text-transform: uppercase; padding: 8px 18px; border-radius: 50px;
-            transition: 0.3s ease;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary); background: rgba(0,242,255,0.08);
-        }
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
 
-        header {
-            height: 100vh; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; text-align: center; padding: 20px;
-        }
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: center; align-items: center; gap: 4px;
+    padding: 16px 24px;
+    background: rgba(6,6,8,0.7);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--c-border);
+  }
 
-        .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3.5rem, 12vw, 6rem);
-            font-weight: 700; text-shadow: 0 0 30px var(--accent-glow); margin-bottom: 10px;
-        }
-        .hero-title span { color: var(--primary); }
+  .nav-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--c-muted); text-decoration: none;
+    padding: 8px 16px; border-radius: 50px;
+    transition: color 0.25s, background 0.25s;
+  }
+  .nav-link:hover { color: var(--c-accent); background: rgba(0,229,255,0.07); }
 
-        .experience-tag {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-weight: 700; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 15px;
-        }
+  /* ─── HERO ─── */
+  header {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 120px 24px 80px;
+    position: relative;
+  }
 
-        .badge {
-            display: inline-block; padding: 10px 28px; border: 1px solid var(--primary);
-            border-radius: 50px; color: var(--primary); font-size: 0.9rem; font-weight: 600;
-            margin-bottom: 30px; background: rgba(0, 242, 255, 0.05); animation: pulse 2s infinite;
-        }
+  .hero-orb {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%, -60%);
+    animation: breathe 6s ease-in-out infinite;
+    pointer-events: none;
+  }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 5px var(--accent-glow); }
-            50% { box-shadow: 0 0 25px var(--accent-glow); }
-            100% { box-shadow: 0 0 5px var(--accent-glow); }
-        }
+  @keyframes breathe {
+    0%, 100% { transform: translate(-50%, -60%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -60%) scale(1.12); opacity: 1; }
+  }
 
-        .btn-container { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+  .hero-mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--c-accent); margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.1s forwards;
+  }
 
-        .btn {
-            padding: 16px 38px; background: rgba(255,255,255,0.05); color: white;
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; cursor: pointer;
-            font-weight: 600; text-decoration: none;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(10px);
-        }
-        .btn-primary { background: var(--primary); color: #000; border: none; }
-        .btn:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(0, 242, 255, 0.3); }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(4rem, 14vw, 8rem);
+    font-weight: 800; line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--c-text);
+    margin-bottom: 6px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
 
-        section { padding: 80px 15%; }
-        section:first-of-type { padding-top: 80px; }
+  .hero-name .dot {
+    color: var(--c-accent);
+    text-shadow: 0 0 40px var(--c-accent);
+  }
 
-        .section-label {
-            font-size: 0.75rem; font-weight: 700; letter-spacing: 4px;
-            text-transform: uppercase; color: var(--primary); margin-bottom: 12px; opacity: 0.7;
-        }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--c-muted);
+    margin-bottom: 36px;
+    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 22px; border: 1px solid rgba(0,229,255,0.25);
+    border-radius: 50px; background: rgba(0,229,255,0.05);
+    font-size: 0.82rem; font-weight: 600; color: var(--c-accent);
+    margin-bottom: 40px;
+    opacity: 0; animation: fadeUp 0.8s 0.45s forwards;
+  }
 
-        .card {
-            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 28px; padding: 40px; position: relative; overflow: hidden;
-            transition: 0.5s ease; backdrop-filter: blur(15px);
-        }
-        .card:hover { background: rgba(255,255,255,0.07); border-color: rgba(0,242,255,0.4); transform: translateY(-10px); }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--c-green);
+    box-shadow: 0 0 8px var(--c-green);
+    animation: blink 1.8s ease-in-out infinite;
+  }
 
-        h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 20px; color: var(--primary); }
-        h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-        ul { list-style: none; }
-        ul li { margin-bottom: 15px; padding-left: 30px; position: relative; }
-        ul li::before { content: "\25b9"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+  .hero-cta {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    opacity: 0; animation: fadeUp 0.8s 0.55s forwards;
+  }
 
-        .disclaimer { margin-top: 15px; font-size: 0.85rem; opacity: 0.8; color: #ff4d4d; font-weight: 600; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 30px; border-radius: 14px;
+    font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.9rem;
+    cursor: pointer; text-decoration: none; border: none;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+  }
 
-        .tool-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-        .tool-tag {
-            padding: 10px 20px; background: rgba(0,242,255,0.1); border: 1px solid rgba(0,242,255,0.3);
-            border-radius: 12px; font-size: 0.95rem; font-weight: 600; color: var(--primary); transition: 0.3s ease;
-        }
-        .tool-tag:hover { background: rgba(0,242,255,0.2); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,242,255,0.2); }
+  .btn-primary {
+    background: var(--c-accent); color: #000;
+  }
+  .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,229,255,0.35); }
 
-        .tool-tag-highlight {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, rgba(0,242,255,0.15), rgba(112,0,255,0.15));
-            border: 1px solid rgba(0,242,255,0.5);
-            border-radius: 12px; font-size: 0.95rem; font-weight: 700; color: #fff;
-            transition: 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .tool-tag-highlight::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(0,242,255,0.1), transparent);
-            transform: translateX(-100%);
-            animation: shimmer 2.5s infinite;
-        }
-        .tool-tag-highlight span { color: var(--primary); }
-        @keyframes shimmer {
-            100% { transform: translateX(100%); }
-        }
-        .tool-tag-highlight:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,242,255,0.3); border-color: var(--primary); }
+  .btn-ghost {
+    background: rgba(255,255,255,0.04); color: var(--c-text);
+    border: 1px solid var(--c-border);
+  }
+  .btn-ghost:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.35); background: rgba(0,229,255,0.05); }
 
-        /* WORKS */
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-        .work-card {
-            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 28px; overflow: hidden; transition: 0.5s ease;
-            backdrop-filter: blur(15px); display: flex; flex-direction: column;
-        }
-        .work-card:hover {
-            background: rgba(255,255,255,0.07); border-color: rgba(0,242,255,0.4);
-            transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,242,255,0.12);
-        }
+  /* ─── SECTIONS ─── */
+  section { padding: 100px 12%; }
 
-        .work-video-container { width: 100%; aspect-ratio: 16/9; background: #000; }
-        .work-video { width: 100%; height: 100%; border: none; }
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--c-accent); opacity: 0.7;
+    margin-bottom: 10px;
+  }
 
-        .work-info { padding: 28px 32px 32px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
-        .work-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; color: #fff; }
-        .work-meta { font-size: 0.85rem; color: var(--primary); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-        .work-desc { font-size: 0.95rem; opacity: 0.75; line-height: 1.6; flex: 1; }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
 
-        .work-tag {
-            display: inline-block; padding: 5px 14px; background: rgba(0,242,255,0.08);
-            border: 1px solid rgba(0,242,255,0.2); border-radius: 8px; font-size: 0.8rem;
-            font-weight: 600; color: var(--primary); margin-right: 5px; margin-top: 5px;
-        }
+  /* ─── CARDS ─── */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
 
-        .work-link {
-            display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
-            padding: 12px 24px; background: rgba(0,242,255,0.08); border: 1px solid rgba(0,242,255,0.3);
-            border-radius: 12px; color: var(--primary); font-weight: 600; text-decoration: none;
-        }
+  .card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 36px;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(0,229,255,0.3);
+    transform: translateY(-6px);
+    box-shadow: var(--glow);
+  }
 
-        /* PRICES */
-        .price-notice {
-            background: rgba(0,242,255,0.05); border: 1px solid rgba(0,242,255,0.2);
-            border-radius: 20px; padding: 30px 36px; margin-bottom: 30px; text-align: center;
-        }
-        .price-notice p { font-size: 1rem; opacity: 0.8; line-height: 1.8; }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem; font-weight: 800;
+    margin-bottom: 14px;
+  }
 
-        .payment-methods { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
-        .payment-badge {
-            display: flex; align-items: center; gap: 10px;
-            padding: 14px 28px; border-radius: 50px;
-            font-weight: 700; font-size: 0.95rem;
-            border: 1px solid rgba(0,242,255,0.3);
-            background: rgba(0,242,255,0.07); color: #fff; transition: 0.3s ease;
-        }
+  /* ─── TAG CHIPS ─── */
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .chip {
+    padding: 8px 18px;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 10px;
+    font-size: 0.83rem; font-weight: 600;
+    color: var(--c-accent);
+  }
+  .chip-highlight {
+    padding: 8px 18px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(191,90,242,0.12));
+    border: 1px solid rgba(0,229,255,0.4);
+    border-radius: 10px;
+    font-size: 0.83rem; font-weight: 700;
+    color: #fff;
+  }
+  .chip-highlight span { color: var(--c-accent); }
 
-        .price-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
-        .price-card {
-            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 24px; padding: 32px; transition: 0.4s ease; backdrop-filter: blur(15px);
-        }
-        .price-card:hover { border-color: rgba(0,242,255,0.4); transform: translateY(-8px); background: rgba(255,255,255,0.06); }
-        .price-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-        .price-card-amount { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
-        .price-card-desc { font-size: 0.88rem; opacity: 0.65; line-height: 1.6; }
+  /* ─── SKILLS LIST ─── */
+  .skill-list { list-style: none; margin-top: 6px; }
+  .skill-list li {
+    padding: 10px 0 10px 24px;
+    position: relative;
+    border-bottom: 1px solid var(--c-border);
+    font-size: 0.95rem;
+    color: rgba(232,232,240,0.8);
+  }
+  .skill-list li:last-child { border-bottom: none; }
+  .skill-list li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--c-accent); font-weight: bold;
+  }
+  .skill-list li.accent { color: var(--c-accent); font-weight: 700; }
 
-        .toast {
-            visibility: hidden; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-            background: var(--primary); color: #000; padding: 14px 40px; border-radius: 50px;
-            font-weight: 800; z-index: 1000; box-shadow: 0 10px 30px rgba(0,242,255,0.5);
-        }
-        .toast.show { visibility: visible; animation: fadeInUp 0.4s; }
+  .warn-text {
+    margin-top: 16px;
+    font-size: 0.83rem;
+    color: var(--c-warn);
+    font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+  }
 
-        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); opacity: 0.7; }
+  /* ─── APPROACH / WORKFLOW ─── */
+  .approach-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
 
-        @keyframes fadeInUp { from { bottom: 0; opacity: 0; } to { bottom: 40px; opacity: 1; } }
+  .approach-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius); padding: 36px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .approach-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--c-accent), var(--c-accent2));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .approach-card:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-5px); }
+  .approach-card:hover::before { opacity: 1; }
 
-        @media (max-width: 768px) { section { padding: 60px 8%; } .hero-title { font-size: 3.5rem; } nav { gap: 4px; } .nav-link { padding: 7px 12px; font-size: 0.72rem; } }
-    </style>
+  .approach-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--c-accent); margin-bottom: 10px; opacity: 0.8;
+  }
+
+  .approach-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 800; margin-bottom: 14px;
+  }
+
+  .approach-body {
+    font-size: 0.9rem; color: var(--c-muted); line-height: 1.8;
+  }
+
+  /* ─── WORKFLOW TOOLS ─── */
+  .workflow-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius); padding: 40px;
+    max-width: 780px;
+    font-size: 0.93rem; color: var(--c-muted); line-height: 1.9;
+  }
+  .workflow-card span { color: var(--c-accent); font-weight: 700; }
+
+  /* ─── WORKS ─── */
+  .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+
+  .work-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .work-card:hover {
+    border-color: rgba(0,229,255,0.35);
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0,229,255,0.1);
+  }
+
+  .work-video { width: 100%; aspect-ratio: 16/9; border: none; display: block; background: #000; }
+
+  .work-body { padding: 26px 30px 30px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .work-meta { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--c-accent); opacity: 0.75; }
+  .work-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; }
+  .work-desc { font-size: 0.88rem; color: var(--c-muted); line-height: 1.65; flex: 1; }
+
+  .work-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 14px; padding: 10px 20px;
+    background: rgba(0,229,255,0.07); border: 1px solid rgba(0,229,255,0.25);
+    border-radius: 10px; color: var(--c-accent); font-weight: 600; font-size: 0.85rem;
+    text-decoration: none; transition: background 0.25s, border-color 0.25s;
+  }
+  .work-link:hover { background: rgba(0,229,255,0.14); border-color: rgba(0,229,255,0.5); }
+
+  .new-work-notice {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,196,0,0.06); border: 1px solid rgba(255,196,0,0.25);
+    border-radius: 50px; padding: 9px 20px;
+    font-size: 0.8rem; color: rgba(255,210,60,0.85); font-weight: 600;
+    margin-bottom: 36px;
+  }
+
+  /* ─── PRICES ─── */
+  .payment-policy {
+    background: linear-gradient(135deg, rgba(255,69,58,0.08), rgba(255,69,58,0.04));
+    border: 1px solid rgba(255,69,58,0.35);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 30px;
+  }
+
+  .policy-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .policy-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(255,69,58,0.15); border: 1px solid rgba(255,69,58,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+
+  .policy-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 800; color: var(--c-warn);
+  }
+
+  .policy-rule {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(255,69,58,0.12);
+    font-size: 0.9rem; line-height: 1.6;
+  }
+  .policy-rule:first-of-type { border-top: none; padding-top: 0; }
+
+  .rule-badge {
+    flex-shrink: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 6px;
+    margin-top: 2px;
+  }
+  .rule-no { background: rgba(255,69,58,0.15); color: var(--c-warn); border: 1px solid rgba(255,69,58,0.3); }
+  .rule-yes { background: rgba(48,209,88,0.1); color: var(--c-green); border: 1px solid rgba(48,209,88,0.3); }
+
+  .price-info {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 28px 36px;
+    margin-bottom: 30px;
+    font-size: 0.92rem; color: var(--c-muted);
+    line-height: 1.8;
+  }
+
+  .payment-methods { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+
+  .pay-badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 11px 22px; border-radius: 50px;
+    border: 1px solid var(--c-border);
+    background: rgba(255,255,255,0.03);
+    font-size: 0.88rem; font-weight: 700; color: var(--c-text);
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .pay-badge:hover { border-color: rgba(0,229,255,0.3); background: rgba(0,229,255,0.05); }
+
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+
+  .price-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius); padding: 30px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .price-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .price-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-6px); }
+  .price-card:hover::after { opacity: 1; }
+
+  .pc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--c-muted); margin-bottom: 6px;
+  }
+  .pc-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+  .pc-amount { font-size: 1.4rem; font-weight: 700; color: var(--c-accent); margin-bottom: 10px; }
+  .pc-desc { font-size: 0.84rem; color: var(--c-muted); line-height: 1.6; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 60px 12%;
+    border-top: 1px solid var(--c-border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .footer-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; }
+  .footer-name span { color: var(--c-accent); }
+  .footer-copy { font-size: 0.8rem; color: var(--c-muted); }
+
+  /* ─── TOAST ─── */
+  #toast {
+    position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--c-accent); color: #000;
+    padding: 12px 32px; border-radius: 50px;
+    font-weight: 800; font-size: 0.88rem;
+    z-index: 9999; opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    white-space: nowrap;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ─── CANVAS BG ─── */
+  #bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    section { padding: 80px 6%; }
+    .approach-row { grid-template-columns: 1fr; }
+    footer { justify-content: center; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .hero-name { font-size: 3.5rem; }
+    nav { gap: 0; }
+    .nav-link { padding: 7px 10px; font-size: 0.68rem; }
+  }
+</style>
 </head>
 <body>
 
-<canvas id="particles"></canvas>
+<canvas id="bg"></canvas>
 
 <nav>
-    <a class="nav-link" href="#about">About</a>
-    <a class="nav-link" href="#experience">Experience</a>
-    <a class="nav-link" href="#workflow">Workflow</a>
-    <a class="nav-link" href="#works">Works</a>
-    <a class="nav-link" href="#prices">Prices</a>
+  <a class="nav-link" href="#about">About</a>
+  <a class="nav-link" href="#approach">Approach</a>
+  <a class="nav-link" href="#workflow">Workflow</a>
+  <a class="nav-link" href="#works">Works</a>
+  <a class="nav-link" href="#prices">Prices</a>
 </nav>
 
 <header>
-    <div data-aos="zoom-in">
-        <span class="experience-tag">Luau Developer</span>
-        <h1 class="hero-title">RIPPER<span>.luau</span></h1>
-        <div class="badge">OPEN FOR COMMISSIONS · SCROLL DOWN FOR INFO</div>
-        <div class="btn-container">
-            <a class="btn btn-primary" href="https://discord.com/users/1050130997204754452" target="_blank">Discord Profile</a>
-            <button class="btn" onclick="copyDiscord()">Copy Username</button>
-        </div>
-    </div>
+  <div class="hero-orb"></div>
+  <div class="hero-mono">Luau Developer · Roblox Scripting</div>
+  <h1 class="hero-name">RIPPER<span class="dot">.</span></h1>
+  <p class="hero-sub">Building clean, scalable systems for Roblox games</p>
+  <div class="status-pill">
+    <span class="status-dot"></span>
+    Open for Commissions
+  </div>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="https://discord.com/users/1050130997204754452" target="_blank">Discord Profile ↗</a>
+    <button class="btn btn-ghost" onclick="copyDiscord()">Copy Username</button>
+  </div>
 </header>
 
+<!-- ABOUT -->
 <section id="about">
-    <div class="section-label">Who I Am</div>
-    <div class="grid">
-        <div class="card" data-aos="fade-up">
-            <h2>About Me</h2>
-            <div class="tool-tags">
-                <div class="tool-tag">Experience: 1 Year</div>
-                <div class="tool-tag">Age: 17</div>
-                <div class="tool-tag">TimeZone: UTC+1</div>
-                <div class="tool-tag-highlight">🎮 Contributed <span>3.9M</span> Visits</div>
-            </div>
-        </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="100">
-            <h2>What I Can Do</h2>
-            <ul>
-                <li>PvP Systems</li>
-                <li>Data Saving</li>
-                <li>Simulator Mechanics</li>
-                <li>Advanced Inventories &amp; Shops</li>
-                <li>Game Loops &amp; Optimization</li>
-                <li>Custom Systems Built For You</li>
-                <li style="color: var(--primary); font-weight: 700;">And Much More...</li>
-            </ul>
-            <p class="disclaimer">&#9888;&#65039; Not doing vehicle systems or fps games.</p>
-        </div>
+  <div class="section-eyebrow">Who I Am</div>
+  <div class="section-title">About Me</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Profile</div>
+      <div class="chips">
+        <div class="chip">1 Year Experience</div>
+        <div class="chip">Age 17</div>
+        <div class="chip">UTC+1</div>
+        <div class="chip-highlight">🎮 <span>3.9M</span> Visits Contributed</div>
+      </div>
     </div>
+    <div class="card">
+      <div class="card-title">What I Build</div>
+      <ul class="skill-list">
+        <li>PvP Systems</li>
+        <li>Data Saving</li>
+        <li>Simulator Mechanics</li>
+        <li>Advanced Inventories &amp; Shops</li>
+        <li>Game Loops &amp; Optimization</li>
+        <li>Custom Systems Built For You</li>
+        <li class="accent">And Much More...</li>
+      </ul>
+      <div class="warn-text">⚠️ Not doing vehicle systems or FPS games.</div>
+    </div>
+  </div>
 </section>
 
-<section id="experience">
-    <div class="section-label">How I Code</div>
-    <h2 data-aos="fade-up" style="margin-bottom: 30px;">My Approach</h2>
-    <div class="grid">
-        <div class="card" data-aos="fade-up">
-            <h2 style="font-size:1.3rem; margin-bottom:14px;">SSA — Single Script Architecture</h2>
-            <p style="opacity:0.75; font-size:0.95rem; line-height:1.8;">Instead of having random scripts thrown all over your game, SSA keeps everything in one organized place. Each feature lives in its own small module. A single main script inits all the modules and runs everything. It makes the project cleaner, faster to fix, and easy to expand later.</p>
-        </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="100">
-            <h2 style="font-size:1.3rem; margin-bottom:14px;">OOP — Object Oriented Programming</h2>
-            <p style="opacity:0.75; font-size:0.95rem; line-height:1.8;">When something needs to repeat—like different stands or enemies—I use OOP. I write the logic once and create copies as needed. It prevents messy code duplication and makes the system scale perfectly for big games.</p>
-        </div>
+<!-- APPROACH -->
+<section id="approach">
+  <div class="section-eyebrow">How I Code</div>
+  <div class="section-title">My Approach</div>
+  <div class="approach-row">
+    <div class="approach-card">
+      <div class="approach-label">Architecture</div>
+      <div class="approach-title">SSA — Single Script Architecture</div>
+      <p class="approach-body">Instead of random scripts scattered across your game, SSA keeps everything in one organized place. Each feature lives in its own small module, and a single main script initializes everything. Cleaner project, faster fixes, easy to expand later.</p>
     </div>
+    <div class="approach-card">
+      <div class="approach-label">Pattern</div>
+      <div class="approach-title">OOP — Object Oriented Programming</div>
+      <p class="approach-body">When something needs to repeat — like different stands or enemies — I use OOP. Write the logic once, create copies as needed. No messy duplication and the system scales perfectly for big games.</p>
+    </div>
+  </div>
 </section>
 
+<!-- WORKFLOW -->
 <section id="workflow">
-    <div class="section-label">My Setup</div>
-    <h2 data-aos="fade-up" style="margin-bottom: 30px;">My Workflow</h2>
-    <div class="card" data-aos="fade-up" style="max-width: 800px;">
-        <p style="opacity:0.75; font-size:0.95rem; line-height:1.9;">
-            I code in <span style="color:var(--primary); font-weight:700;">Visual Studio Code</span> for a superior development experience. I use <span style="color:var(--primary); font-weight:700;">Rojo</span> to sync my scripts to Roblox in real-time, <span style="color:var(--primary); font-weight:700;">Selene</span> to catch errors before they happen, and <span style="color:var(--primary); font-weight:700;">StyLua</span> to keep every line of code perfectly formatted and readable.
-        </p>
-    </div>
+  <div class="section-eyebrow">My Setup</div>
+  <div class="section-title">Workflow</div>
+  <div class="workflow-card">
+    I code in <span>Visual Studio Code</span> for a superior development experience. I use <span>Rojo</span> to sync my scripts to Roblox in real-time, <span>Selene</span> to catch errors before they happen, and <span>StyLua</span> to keep every line of code perfectly formatted and readable.
+  </div>
 </section>
 
+<!-- WORKS -->
 <section id="works">
-    <div class="section-label">Projects</div>
-    <h2 data-aos="fade-up" style="margin-bottom:20px;">My Works</h2>
-    <div data-aos="fade-up" style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,200,0,0.07); border:1px solid rgba(255,200,0,0.3); border-radius:50px; padding:10px 22px; margin-bottom:36px;">
-        <span style="font-size:1rem;">⚠️</span>
-        <span style="font-size:0.85rem; color:rgba(255,210,0,0.9); font-weight:600;">I just started recording my work — please expect the amount of clips to be low.</span>
+  <div class="section-eyebrow">Projects</div>
+  <div class="section-title">My Works</div>
+  <div class="new-work-notice">
+    ⚠️ Just started recording my work — expect the clip count to be low for now.
+  </div>
+  <div class="works-grid">
+    <div class="work-card">
+      <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="work-body">
+        <div class="work-meta">All Scripted by me</div>
+        <div class="work-title">Custom Stand Summoning</div>
+        <div class="work-desc">Smooth stand summoning system where idle animations change based on the active stand. Scripted entirely by me.</div>
+        <a class="work-link" href="https://youtu.be/YAcVqIIFzCw" target="_blank">View Video ↗</a>
+      </div>
     </div>
-    <div class="works-grid">
-        <div class="work-card" data-aos="fade-up">
-            <div class="work-video-container">
-                <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="work-info">
-                <div class="work-meta">All Scripted by me</div>
-                <div class="work-title">Custom Stand Summoning</div>
-                <div class="work-desc">Smooth stand summoning system where idle animations change based on the active stand. Scripted entirely by me.</div>
-                <a href="https://youtu.be/YAcVqIIFzCw" class="work-link" target="_blank">View Video ↗</a>
-            </div>
-        </div>
-        <div class="work-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="work-video-container">
-                <iframe class="work-video" src="https://www.youtube.com/embed/QkkssarI0Wc?autoplay=1&mute=1&loop=1&playlist=QkkssarI0Wc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="work-info">
-                <div class="work-meta">All Scripted by me</div>
-                <div class="work-title">Inventory, Codes &amp; Arrow System</div>
-                <div class="work-desc">A functional inventory system, reward codes, and a stand acquisition arrow system. Scripted entirely by me.</div>
-                <a href="https://youtu.be/QkkssarI0Wc" class="work-link" target="_blank">View Video ↗</a>
-            </div>
-        </div>
+    <div class="work-card">
+      <iframe class="work-video" src="https://www.youtube.com/embed/QkkssarI0Wc?autoplay=1&mute=1&loop=1&playlist=QkkssarI0Wc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="work-body">
+        <div class="work-meta">All Scripted by me</div>
+        <div class="work-title">Inventory, Codes &amp; Arrow System</div>
+        <div class="work-desc">A functional inventory system, reward codes, and a stand acquisition arrow system. Scripted entirely by me.</div>
+        <a class="work-link" href="https://youtu.be/QkkssarI0Wc" target="_blank">View Video ↗</a>
+      </div>
     </div>
+  </div>
 </section>
 
+<!-- PRICES -->
 <section id="prices">
-    <div class="section-label">Commission Info</div>
-    <h2 data-aos="fade-up" style="margin-bottom: 30px;">Prices</h2>
-    <div class="price-notice" data-aos="fade-up">
-        <p>Prices depend on the task complexity. DM me to discuss a fair rate.</p>
-        <div class="payment-methods">
-            <div class="payment-badge">🟢 Robux</div>
-            <div class="payment-badge">🔵 PayPal</div>
-        </div>
+  <div class="section-eyebrow">Commission Info</div>
+  <div class="section-title">Prices</div>
+
+  <!-- PAYMENT POLICY — THE MOST IMPORTANT CARD -->
+  <div class="payment-policy">
+    <div class="policy-header">
+      <div class="policy-icon">🔒</div>
+      <div class="policy-title">Payment Policy — Read Before DMing</div>
     </div>
-    <div class="price-cards" data-aos="fade-up">
-        <div class="price-card">
-            <div class="price-card-title">Small Job</div>
-            <div class="price-card-amount">Low price</div>
-            <div class="price-card-desc">Quick fixes or single features.</div>
-        </div>
-        <div class="price-card">
-            <div class="price-card-title">Medium Job</div>
-            <div class="price-card-amount">Mid price</div>
-            <div class="price-card-desc">Complex systems and integrations.</div>
-        </div>
-        <div class="price-card">
-            <div class="price-card-title">Big Job</div>
-            <div class="price-card-amount">Negotiable</div>
-            <div class="price-card-desc">Full frameworks and mechanics.</div>
-        </div>
+    <div class="policy-rule">
+      <span class="rule-badge rule-no">Not doing</span>
+      <span><strong>No payment after completion.</strong> I do not accept payment once the work is done. I've been scammed too many times this way and I'm done with it.</span>
     </div>
+    <div class="policy-rule">
+      <span class="rule-badge rule-no">Not doing</span>
+      <span><strong>No percentage .</strong> I don't do % related pays.</span>
+    </div>
+    <div class="policy-rule">
+      <span class="rule-badge rule-yes">Yes</span>
+      <span><strong>40% upfront and 60% at end</strong> you send me 40% of pay then i finish the job and you pay the rest </span>
+    </div>
+  </div>
+
+  <div class="price-info">
+    Prices vary based on complexity. DM me on Discord and we'll figure out a fair price together.
+    <div class="payment-methods">
+      <div class="pay-badge">🟢 Robux</div>
+      <div class="pay-badge">🔵 PayPal</div>
+    </div>
+  </div>
+
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="pc-label">Tier 01</div>
+      <div class="pc-title">Small Job</div>
+      <div class="pc-amount">Low price</div>
+      <div class="pc-desc">Quick fixes or single features.</div>
+    </div>
+    <div class="price-card">
+      <div class="pc-label">Tier 02</div>
+      <div class="pc-title">Medium Job</div>
+      <div class="pc-amount">Mid price</div>
+      <div class="pc-desc">Complex systems and integrations.</div>
+    </div>
+    <div class="price-card">
+      <div class="pc-label">Tier 03</div>
+      <div class="pc-title">Big Job</div>
+      <div class="pc-amount">Negotiable</div>
+      <div class="pc-desc">Full frameworks and mechanics.</div>
+    </div>
+  </div>
 </section>
 
 <footer>
-    <p>&copy; 2026 Ripper | Roblox Scripting Specialist</p>
+  <div class="footer-name">RIPPER<span>.</span></div>
+  <div class="footer-copy">© 2026 Ripper · Luau Developer</div>
 </footer>
 
-<div id="toast" class="toast">Username Copied!</div>
+<div id="toast">Username Copied!</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000, once: true });
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    class Particle {
-        constructor() { this.reset(); }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2;
-            this.speedX = (Math.random() - 0.5) * 0.4;
-            this.speedY = (Math.random() - 0.5) * 0.4;
-            this.opacity = Math.random();
-        }
-        update() { this.x += this.speedX; this.y += this.speedY; if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset(); }
-        draw() { ctx.fillStyle = `rgba(0, 242, 255, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
-    }
-    function createParticles() { particles = []; for(let i=0; i<80; i++) particles.push(new Particle()); }
-    function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
-    window.addEventListener('resize', ()=>{ initCanvas(); createParticles(); });
-    initCanvas(); createParticles(); animate();
+// ─── PARTICLE BACKGROUND ───
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
 
-    function copyDiscord() {
-        navigator.clipboard.writeText('ripper.luau');
-        const toast = document.getElementById('toast');
-        toast.className = 'toast show';
-        setTimeout(() => { toast.className = 'toast'; }, 3000);
-    }
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+
+class P {
+  constructor() { this.init(); }
+  init() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.r = Math.random() * 1.5 + 0.3;
+    this.vx = (Math.random() - 0.5) * 0.35;
+    this.vy = (Math.random() - 0.5) * 0.35;
+    this.o = Math.random() * 0.5 + 0.1;
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.init();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,229,255,${this.o})`;
+    ctx.fill();
+  }
+}
+
+function initP() {
+  particles = [];
+  for (let i = 0; i < 70; i++) particles.push(new P());
+}
+
+// Draw radial gradient background
+function drawBG() {
+  const grd = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, Math.max(W,H)*0.7);
+  grd.addColorStop(0, '#0a0a14');
+  grd.addColorStop(1, '#060608');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function loop() {
+  ctx.clearRect(0, 0, W, H);
+  drawBG();
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(loop);
+}
+
+resize(); initP(); loop();
+window.addEventListener('resize', () => { resize(); initP(); });
+
+// ─── SCROLL-BASED FADE-IN ───
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.card, .approach-card, .work-card, .price-card, .payment-policy, .price-info, .workflow-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, box-shadow 0.3s';
+  io.observe(el);
+});
+
+// ─── COPY DISCORD ───
+function copyDiscord() {
+  navigator.clipboard.writeText('ripper.luau');
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ─── ACTIVE NAV ───
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (scrollY >= s.offsetTop - 200) cur = s.id; });
+  navLinks.forEach(l => {
+    l.style.color = l.getAttribute('href') === '#' + cur ? 'var(--c-accent)' : '';
+    l.style.background = l.getAttribute('href') === '#' + cur ? 'rgba(0,229,255,0.07)' : '';
+  });
+}, { passive: true });
 </script>
 </body>
 </html>
