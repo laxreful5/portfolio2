@@ -3,65 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ripper · Luau Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Ripper</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --c-bg: #060608;
-    --c-surface: #0d0d12;
-    --c-border: rgba(255,255,255,0.06);
-    --c-text: #e8e8f0;
-    --c-muted: rgba(232,232,240,0.45);
-    --c-accent: #00e5ff;
-    --c-accent2: #bf5af2;
-    --c-warn: #ff453a;
-    --c-green: #30d158;
-    --glow: 0 0 40px rgba(0,229,255,0.18);
-    --radius: 20px;
+    --bg: #010102;
+    --surface: #040408;
+    --border: rgba(255,255,255,0.04);
+    --border-hover: rgba(74,122,255,0.2);
+    --text: #b8b8cc;
+    --muted: rgba(184,184,204,0.35);
+    --accent: #4a7aff;
+    --red: #ff3b3b;
+    --green: #2ec95c;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--c-bg);
-    color: var(--c-text);
-    font-family: 'Manrope', sans-serif;
-    font-size: 16px;
-    line-height: 1.65;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
     overflow-x: hidden;
   }
 
-  /* ─── NOISE OVERLAY ─── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 9999; opacity: 0.4;
-  }
-
-  /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: center; align-items: center; gap: 4px;
-    padding: 16px 24px;
-    background: rgba(6,6,8,0.7);
+    display: flex; justify-content: center; gap: 2px;
+    padding: 13px 24px;
+    background: rgba(1,1,2,0.94);
     backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--c-border);
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem; font-weight: 500;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--c-muted); text-decoration: none;
-    padding: 8px 16px; border-radius: 50px;
-    transition: color 0.25s, background 0.25s;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    padding: 6px 13px; border-radius: 5px;
+    transition: color 0.2s, background 0.2s;
   }
-  .nav-link:hover { color: var(--c-accent); background: rgba(0,229,255,0.07); }
+  .nav-link:hover { color: var(--accent); background: rgba(74,122,255,0.07); }
 
-  /* ─── HERO ─── */
   header {
     min-height: 100vh;
     display: flex; flex-direction: column;
@@ -70,397 +56,268 @@
     position: relative;
   }
 
-  .hero-orb {
+  .hero-glow {
     position: absolute;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(74,122,255,0.035) 0%, transparent 65%);
     border-radius: 50%;
-    top: 50%; left: 50%; transform: translate(-50%, -60%);
-    animation: breathe 6s ease-in-out infinite;
+    top: 50%; left: 50%; transform: translate(-50%, -55%);
+    animation: breathe 8s ease-in-out infinite;
     pointer-events: none;
   }
 
   @keyframes breathe {
-    0%, 100% { transform: translate(-50%, -60%) scale(1); opacity: 0.7; }
-    50% { transform: translate(-50%, -60%) scale(1.12); opacity: 1; }
-  }
-
-  .hero-mono {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--c-accent); margin-bottom: 24px;
-    opacity: 0; animation: fadeUp 0.8s 0.1s forwards;
+    0%,100% { transform: translate(-50%,-55%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%,-55%) scale(1.08); opacity: 1; }
   }
 
   .hero-name {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(4rem, 14vw, 8rem);
-    font-weight: 800; line-height: 0.9;
-    letter-spacing: -0.03em;
-    color: var(--c-text);
-    margin-bottom: 6px;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(3.8rem, 14vw, 8rem);
+    font-weight: 700; line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #e0e0f0;
+    opacity: 0; animation: up 0.7s 0.15s forwards;
+    position: relative; z-index: 1;
   }
 
-  .hero-name .dot {
-    color: var(--c-accent);
-    text-shadow: 0 0 40px var(--c-accent);
-  }
-
-  .hero-sub {
-    font-size: 1.05rem; color: var(--c-muted);
-    margin-bottom: 36px;
-    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
-  }
-
-  .status-pill {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 10px 22px; border: 1px solid rgba(0,229,255,0.25);
-    border-radius: 50px; background: rgba(0,229,255,0.05);
-    font-size: 0.82rem; font-weight: 600; color: var(--c-accent);
-    margin-bottom: 40px;
-    opacity: 0; animation: fadeUp 0.8s 0.45s forwards;
-  }
-
-  .status-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--c-green);
-    box-shadow: 0 0 8px var(--c-green);
-    animation: blink 1.8s ease-in-out infinite;
-  }
-
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-  .hero-cta {
-    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-    opacity: 0; animation: fadeUp 0.8s 0.55s forwards;
+  .cta {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    margin-top: 36px;
+    opacity: 0; animation: up 0.7s 0.3s forwards;
+    position: relative; z-index: 1;
   }
 
   .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 30px; border-radius: 14px;
-    font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.9rem;
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 12px 26px; border-radius: 7px;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.87rem;
     cursor: pointer; text-decoration: none; border: none;
-    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+    transition: transform 0.25s, box-shadow 0.25s, background 0.2s;
   }
 
-  .btn-primary {
-    background: var(--c-accent); color: #000;
-  }
-  .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,229,255,0.35); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(74,122,255,0.28); }
 
   .btn-ghost {
-    background: rgba(255,255,255,0.04); color: var(--c-text);
-    border: 1px solid var(--c-border);
+    background: rgba(255,255,255,0.02); color: var(--text);
+    border: 1px solid var(--border);
   }
-  .btn-ghost:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.35); background: rgba(0,229,255,0.05); }
+  .btn-ghost:hover { transform: translateY(-3px); border-color: var(--border-hover); background: rgba(74,122,255,0.05); }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ─── SECTIONS ─── */
-  section { padding: 100px 12%; }
-
-  .section-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--c-accent); opacity: 0.7;
-    margin-bottom: 10px;
+  @keyframes up {
+    from { opacity:0; transform: translateY(18px); }
+    to { opacity:1; transform: translateY(0); }
   }
 
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    font-weight: 800; letter-spacing: -0.02em;
-    margin-bottom: 40px;
+  section { padding: 90px 12%; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); opacity: 0.55; margin-bottom: 8px;
   }
 
-  /* ─── CARDS ─── */
-  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .sec-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 32px; color: #cccce0;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
 
   .card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius);
-    padding: 36px;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 28px;
+    transition: border-color 0.25s, transform 0.25s;
   }
-  .card:hover {
-    border-color: rgba(0,229,255,0.3);
-    transform: translateY(-6px);
-    box-shadow: var(--glow);
-  }
+  .card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
 
-  .card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem; font-weight: 800;
-    margin-bottom: 14px;
-  }
+  .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 16px; color: #bbbbd0; }
 
-  /* ─── TAG CHIPS ─── */
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
-    padding: 8px 18px;
-    background: rgba(0,229,255,0.08);
-    border: 1px solid rgba(0,229,255,0.2);
-    border-radius: 10px;
-    font-size: 0.83rem; font-weight: 600;
-    color: var(--c-accent);
+    padding: 5px 13px; border-radius: 5px;
+    background: rgba(74,122,255,0.06); border: 1px solid rgba(74,122,255,0.14);
+    font-size: 0.78rem; font-weight: 500; color: var(--accent);
   }
   .chip-highlight {
-    padding: 8px 18px;
-    background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(191,90,242,0.12));
-    border: 1px solid rgba(0,229,255,0.4);
-    border-radius: 10px;
-    font-size: 0.83rem; font-weight: 700;
-    color: #fff;
+    padding: 5px 13px; border-radius: 5px;
+    background: rgba(74,122,255,0.08); border: 1px solid rgba(74,122,255,0.28);
+    font-size: 0.78rem; font-weight: 700; color: #b8c8ff;
   }
-  .chip-highlight span { color: var(--c-accent); }
+  .chip-highlight span { color: var(--accent); }
 
-  /* ─── SKILLS LIST ─── */
-  .skill-list { list-style: none; margin-top: 6px; }
+  .skill-list { list-style: none; }
   .skill-list li {
-    padding: 10px 0 10px 24px;
-    position: relative;
-    border-bottom: 1px solid var(--c-border);
-    font-size: 0.95rem;
-    color: rgba(232,232,240,0.8);
+    padding: 8px 0 8px 18px; position: relative;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.87rem; color: rgba(184,184,204,0.6);
   }
   .skill-list li:last-child { border-bottom: none; }
-  .skill-list li::before {
-    content: '▸';
-    position: absolute; left: 0;
-    color: var(--c-accent); font-weight: bold;
-  }
-  .skill-list li.accent { color: var(--c-accent); font-weight: 700; }
+  .skill-list li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
+  .skill-list li.hl { color: var(--accent); font-weight: 600; }
 
-  .warn-text {
-    margin-top: 16px;
-    font-size: 0.83rem;
-    color: var(--c-warn);
-    font-weight: 600;
+  .warn {
+    margin-top: 14px; font-size: 0.77rem;
+    color: var(--red); font-weight: 500;
     display: flex; align-items: center; gap: 6px;
   }
 
-  /* ─── APPROACH / WORKFLOW ─── */
-  .approach-row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-  }
-
-  .approach-card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius); padding: 36px;
-    transition: border-color 0.3s, transform 0.3s;
+  .ssa-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 32px;
+    max-width: 740px;
+    transition: border-color 0.25s, transform 0.25s;
     position: relative; overflow: hidden;
   }
-  .approach-card::before {
+  .ssa-card::before {
     content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--c-accent), var(--c-accent2));
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
     opacity: 0; transition: opacity 0.3s;
   }
-  .approach-card:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-5px); }
-  .approach-card:hover::before { opacity: 1; }
-
-  .approach-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--c-accent); margin-bottom: 10px; opacity: 0.8;
+  .ssa-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+  .ssa-card:hover::before { opacity: 1; }
+  .ssa-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); opacity: 0.55; margin-bottom: 7px;
   }
+  .ssa-title { font-weight: 700; font-size: 1rem; color: #bbbbd0; margin-bottom: 12px; }
+  .ssa-body { font-size: 0.86rem; color: var(--muted); line-height: 1.85; }
 
-  .approach-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem; font-weight: 800; margin-bottom: 14px;
+  .code-example {
+    margin-top: 18px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(74,122,255,0.09);
+    border-radius: 7px;
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: rgba(184,184,204,0.5);
+    line-height: 2;
   }
+  .kw { color: #4a7aff; }
+  .fn { color: #7aabff; }
+  .cm { color: rgba(184,184,204,0.25); }
 
-  .approach-body {
-    font-size: 0.9rem; color: var(--c-muted); line-height: 1.8;
+  .workflow-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 30px; max-width: 680px;
+    font-size: 0.87rem; color: var(--muted); line-height: 1.9;
   }
+  .workflow-box span { color: var(--accent); font-weight: 600; }
 
-  /* ─── WORKFLOW TOOLS ─── */
-  .workflow-card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius); padding: 40px;
-    max-width: 780px;
-    font-size: 0.93rem; color: var(--c-muted); line-height: 1.9;
-  }
-  .workflow-card span { color: var(--c-accent); font-weight: 700; }
-
-  /* ─── WORKS ─── */
-  .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+  .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
 
   .work-card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius); overflow: hidden;
-    display: flex; flex-direction: column;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
   }
   .work-card:hover {
-    border-color: rgba(0,229,255,0.35);
-    transform: translateY(-8px);
-    box-shadow: 0 24px 60px rgba(0,229,255,0.1);
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.7);
   }
 
   .work-video { width: 100%; aspect-ratio: 16/9; border: none; display: block; background: #000; }
 
-  .work-body { padding: 26px 30px 30px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
-  .work-meta { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--c-accent); opacity: 0.75; }
-  .work-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; }
-  .work-desc { font-size: 0.88rem; color: var(--c-muted); line-height: 1.65; flex: 1; }
+  .work-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .work-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.61rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); opacity: 0.55;
+  }
+  .work-title { font-weight: 700; font-size: 0.93rem; color: #bbbbd0; }
+  .work-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; flex: 1; }
 
   .work-link {
-    display: inline-flex; align-items: center; gap: 7px;
-    margin-top: 14px; padding: 10px 20px;
-    background: rgba(0,229,255,0.07); border: 1px solid rgba(0,229,255,0.25);
-    border-radius: 10px; color: var(--c-accent); font-weight: 600; font-size: 0.85rem;
-    text-decoration: none; transition: background 0.25s, border-color 0.25s;
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 12px; padding: 7px 15px;
+    background: rgba(74,122,255,0.05); border: 1px solid rgba(74,122,255,0.15);
+    border-radius: 6px; color: var(--accent); font-weight: 600; font-size: 0.79rem;
+    text-decoration: none; transition: background 0.2s, border-color 0.2s;
   }
-  .work-link:hover { background: rgba(0,229,255,0.14); border-color: rgba(0,229,255,0.5); }
+  .work-link:hover { background: rgba(74,122,255,0.11); border-color: rgba(74,122,255,0.38); }
 
-  .new-work-notice {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(255,196,0,0.06); border: 1px solid rgba(255,196,0,0.25);
-    border-radius: 50px; padding: 9px 20px;
-    font-size: 0.8rem; color: rgba(255,210,60,0.85); font-weight: 600;
-    margin-bottom: 36px;
-  }
-
-  /* ─── PRICES ─── */
-  .payment-policy {
-    background: linear-gradient(135deg, rgba(255,69,58,0.08), rgba(255,69,58,0.04));
-    border: 1px solid rgba(255,69,58,0.35);
-    border-radius: var(--radius);
-    padding: 32px 36px;
-    margin-bottom: 30px;
+  .notice {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,160,0,0.03); border: 1px solid rgba(255,160,0,0.12);
+    border-radius: 5px; padding: 7px 13px;
+    font-size: 0.75rem; color: rgba(255,190,40,0.55); font-weight: 500;
+    margin-bottom: 24px;
   }
 
-  .policy-header {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 16px;
+  .policy {
+    background: rgba(255,59,59,0.025); border: 1px solid rgba(255,59,59,0.13);
+    border-radius: 10px; padding: 24px 26px; margin-bottom: 18px;
   }
 
+  .policy-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
   .policy-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: rgba(255,69,58,0.15); border: 1px solid rgba(255,69,58,0.35);
+    width: 28px; height: 28px; border-radius: 6px;
+    background: rgba(255,59,59,0.07); border: 1px solid rgba(255,59,59,0.18);
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
+    font-size: 0.8rem; flex-shrink: 0;
   }
+  .policy-head-title { font-weight: 700; color: var(--red); font-size: 0.88rem; }
 
-  .policy-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem; font-weight: 800; color: var(--c-warn);
+  .rule {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0; border-top: 1px solid rgba(255,59,59,0.06);
+    font-size: 0.84rem; line-height: 1.6; color: rgba(184,184,204,0.62);
   }
+  .rule:first-of-type { border-top: none; padding-top: 0; }
 
-  .policy-rule {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 12px 0;
-    border-top: 1px solid rgba(255,69,58,0.12);
-    font-size: 0.9rem; line-height: 1.6;
+  .badge {
+    flex-shrink: 0; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.57rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; margin-top: 3px;
   }
-  .policy-rule:first-of-type { border-top: none; padding-top: 0; }
-
-  .rule-badge {
-    flex-shrink: 0;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 4px 10px; border-radius: 6px;
-    margin-top: 2px;
-  }
-  .rule-no { background: rgba(255,69,58,0.15); color: var(--c-warn); border: 1px solid rgba(255,69,58,0.3); }
-  .rule-yes { background: rgba(48,209,88,0.1); color: var(--c-green); border: 1px solid rgba(48,209,88,0.3); }
+  .badge-no { background: rgba(255,59,59,0.09); color: var(--red); border: 1px solid rgba(255,59,59,0.18); }
+  .badge-yes { background: rgba(46,201,92,0.07); color: var(--green); border: 1px solid rgba(46,201,92,0.18); }
 
   .price-info {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius);
-    padding: 28px 36px;
-    margin-bottom: 30px;
-    font-size: 0.92rem; color: var(--c-muted);
-    line-height: 1.8;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px 26px;
+    font-size: 0.86rem; color: var(--muted); line-height: 1.8;
   }
-
-  .payment-methods { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+  .pay-methods { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 
   .pay-badge {
     display: inline-flex; align-items: center; gap: 9px;
-    padding: 11px 22px; border-radius: 50px;
-    border: 1px solid var(--c-border);
-    background: rgba(255,255,255,0.03);
-    font-size: 0.88rem; font-weight: 700; color: var(--c-text);
-    transition: border-color 0.25s, background 0.25s;
+    padding: 8px 16px; border-radius: 6px;
+    border: 1px solid var(--border); background: rgba(255,255,255,0.012);
+    font-size: 0.82rem; font-weight: 600; color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
   }
-  .pay-badge:hover { border-color: rgba(0,229,255,0.3); background: rgba(0,229,255,0.05); }
+  .pay-badge:hover { border-color: var(--border-hover); background: rgba(74,122,255,0.04); }
 
-  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  #bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
 
-  .price-card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius); padding: 30px;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .price-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .price-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-6px); }
-  .price-card:hover::after { opacity: 1; }
+  footer { padding: 28px 12%; border-top: 1px solid var(--border); }
 
-  .pc-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--c-muted); margin-bottom: 6px;
-  }
-  .pc-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
-  .pc-amount { font-size: 1.4rem; font-weight: 700; color: var(--c-accent); margin-bottom: 10px; }
-  .pc-desc { font-size: 0.84rem; color: var(--c-muted); line-height: 1.6; }
-
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 60px 12%;
-    border-top: 1px solid var(--c-border);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 20px;
-  }
-  .footer-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; }
-  .footer-name span { color: var(--c-accent); }
-  .footer-copy { font-size: 0.8rem; color: var(--c-muted); }
-
-  /* ─── TOAST ─── */
   #toast {
-    position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%) translateY(80px);
-    background: var(--c-accent); color: #000;
-    padding: 12px 32px; border-radius: 50px;
-    font-weight: 800; font-size: 0.88rem;
+    position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(55px);
+    background: var(--accent); color: #fff;
+    padding: 9px 24px; border-radius: 6px;
+    font-weight: 700; font-size: 0.81rem;
     z-index: 9999; opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.25s, transform 0.25s;
     white-space: nowrap;
   }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* ─── CANVAS BG ─── */
-  #bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    section { padding: 80px 6%; }
-    .approach-row { grid-template-columns: 1fr; }
-    footer { justify-content: center; text-align: center; }
-  }
+  @media (max-width: 900px) { section { padding: 65px 6%; } }
   @media (max-width: 600px) {
-    .hero-name { font-size: 3.5rem; }
+    .hero-name { font-size: 3.2rem; }
     nav { gap: 0; }
-    .nav-link { padding: 7px 10px; font-size: 0.68rem; }
+    .nav-link { padding: 5px 8px; font-size: 0.62rem; }
   }
 </style>
 </head>
@@ -477,27 +334,20 @@
 </nav>
 
 <header>
-  <div class="hero-orb"></div>
-  <div class="hero-mono">Luau Developer · Roblox Scripting</div>
-  <h1 class="hero-name">RIPPER<span class="dot">.</span></h1>
-  <p class="hero-sub">Building clean, scalable systems for Roblox games</p>
-  <div class="status-pill">
-    <span class="status-dot"></span>
-    Open for Commissions
-  </div>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="https://discord.com/users/1050130997204754452" target="_blank">Discord Profile ↗</a>
+  <div class="hero-glow"></div>
+  <h1 class="hero-name">RIPPER</h1>
+  <div class="cta">
+    <a class="btn btn-primary" href="https://discord.com/users/1050130997204754452" target="_blank">Discord ↗</a>
     <button class="btn btn-ghost" onclick="copyDiscord()">Copy Username</button>
   </div>
 </header>
 
-<!-- ABOUT -->
 <section id="about">
-  <div class="section-eyebrow">Who I Am</div>
-  <div class="section-title">About Me</div>
+  <div class="eyebrow">Who I Am</div>
+  <div class="sec-title">About Me</div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title">Profile</div>
+      <div class="card-title">Basic Info</div>
       <div class="chips">
         <div class="chip">1 Year Experience</div>
         <div class="chip">Age 17</div>
@@ -506,62 +356,58 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-title">What I Build</div>
+      <div class="card-title">What I Can Build</div>
       <ul class="skill-list">
         <li>PvP Systems</li>
         <li>Data Saving</li>
         <li>Simulator Mechanics</li>
-        <li>Advanced Inventories &amp; Shops</li>
+        <li>Inventories &amp; Shops</li>
         <li>Game Loops &amp; Optimization</li>
         <li>Custom Systems Built For You</li>
-        <li class="accent">And Much More...</li>
+        <li class="hl">And More...</li>
       </ul>
-      <div class="warn-text">⚠️ Not doing vehicle systems or FPS games.</div>
+      <div class="warn">⚠ Not doing vehicle systems or FPS games.</div>
     </div>
   </div>
 </section>
 
-<!-- APPROACH -->
 <section id="approach">
-  <div class="section-eyebrow">How I Code</div>
-  <div class="section-title">My Approach</div>
-  <div class="approach-row">
-    <div class="approach-card">
-      <div class="approach-label">Architecture</div>
-      <div class="approach-title">SSA — Single Script Architecture</div>
-      <p class="approach-body">Instead of random scripts scattered across your game, SSA keeps everything in one organized place. Each feature lives in its own small module, and a single main script initializes everything. Cleaner project, faster fixes, easy to expand later.</p>
-    </div>
-    <div class="approach-card">
-      <div class="approach-label">Pattern</div>
-      <div class="approach-title">OOP — Object Oriented Programming</div>
-      <p class="approach-body">When something needs to repeat — like different stands or enemies — I use OOP. Write the logic once, create copies as needed. No messy duplication and the system scales perfectly for big games.</p>
+  <div class="eyebrow">How I Code</div>
+  <div class="sec-title">My Approach</div>
+  <div class="ssa-card">
+    <div class="ssa-label">Architecture</div>
+    <div class="ssa-title">SSA — Single Script Architecture</div>
+    <p class="ssa-body">I split game systems into services. Each service gets initialized depending on who owns it — some run on the client, some on the server, some on both. For example a build system would have a <strong style="color:#7aabff">BuildServiceClient</strong> and a <strong style="color:#7aabff">BuildServiceServer</strong>, or just one of them if the service only needs to run on one side. The scripts that boot everything up handle this automatically.</p>
+    <div class="code-example">
+      <span class="cm">-- server boots server-side services</span><br>
+      <span class="kw">BuildServiceServer</span><span class="fn">:init()</span><br>
+      <span class="cm">-- client boots client-side services</span><br>
+      <span class="kw">BuildServiceClient</span><span class="fn">:init()</span><br>
+      <span class="cm">-- some services only need one side</span><br>
+      <span class="kw">DataService</span><span class="fn">:init()</span>&nbsp;&nbsp;<span class="cm">-- server only</span>
     </div>
   </div>
 </section>
 
-<!-- WORKFLOW -->
 <section id="workflow">
-  <div class="section-eyebrow">My Setup</div>
-  <div class="section-title">Workflow</div>
-  <div class="workflow-card">
-    I code in <span>Visual Studio Code</span> for a superior development experience. I use <span>Rojo</span> to sync my scripts to Roblox in real-time, <span>Selene</span> to catch errors before they happen, and <span>StyLua</span> to keep every line of code perfectly formatted and readable.
+  <div class="eyebrow">My Setup</div>
+  <div class="sec-title">Workflow</div>
+  <div class="workflow-box">
+    I write code in <span>Visual Studio Code</span>. I use <span>Rojo</span> to sync my scripts to Roblox while I work, <span>Selene</span> to catch mistakes before they cause problems, and <span>StyLua</span> to keep the code clean and easy to read.
   </div>
 </section>
 
-<!-- WORKS -->
 <section id="works">
-  <div class="section-eyebrow">Projects</div>
-  <div class="section-title">My Works</div>
-  <div class="new-work-notice">
-    ⚠️ Just started recording my work — expect the clip count to be low for now.
-  </div>
+  <div class="eyebrow">Projects</div>
+  <div class="sec-title">My Works</div>
+  <div class="notice">⚠ Just started recording my work — not many clips yet.</div>
   <div class="works-grid">
     <div class="work-card">
       <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <div class="work-body">
         <div class="work-meta">All Scripted by me</div>
         <div class="work-title">Custom Stand Summoning</div>
-        <div class="work-desc">Smooth stand summoning system where idle animations change based on the active stand. Scripted entirely by me.</div>
+        <div class="work-desc">Stand summoning system where the idle animation changes depending on which stand is active.</div>
         <a class="work-link" href="https://youtu.be/YAcVqIIFzCw" target="_blank">View Video ↗</a>
       </div>
     </div>
@@ -570,77 +416,64 @@
       <div class="work-body">
         <div class="work-meta">All Scripted by me</div>
         <div class="work-title">Inventory, Codes &amp; Arrow System</div>
-        <div class="work-desc">A functional inventory system, reward codes, and a stand acquisition arrow system. Scripted entirely by me.</div>
+        <div class="work-desc">An inventory, reward codes, and a stand-getting arrow system.</div>
         <a class="work-link" href="https://youtu.be/QkkssarI0Wc" target="_blank">View Video ↗</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICES -->
 <section id="prices">
-  <div class="section-eyebrow">Commission Info</div>
-  <div class="section-title">Prices</div>
+  <div class="eyebrow">Commission Info</div>
+  <div class="sec-title">Prices</div>
 
-  <!-- PAYMENT POLICY — THE MOST IMPORTANT CARD -->
-  <div class="payment-policy">
-    <div class="policy-header">
+  <div class="policy">
+    <div class="policy-head">
       <div class="policy-icon">🔒</div>
-      <div class="policy-title">Payment Policy — Read Before DMing</div>
+      <div class="policy-head-title">Payment Rules — Read Before DMing</div>
     </div>
-    <div class="policy-rule">
-      <span class="rule-badge rule-no">Not doing</span>
-      <span><strong>No payment after completion.</strong> I do not accept payment once the work is done. I've been scammed too many times this way and I'm done with it.</span>
+    <div class="rule">
+      <span class="badge badge-no">No</span>
+      <span><strong>No paying after the work is done.</strong> I've been scammed too many times that way, so I don't do it anymore.</span>
     </div>
-    <div class="policy-rule">
-      <span class="rule-badge rule-no">Not doing</span>
-      <span><strong>No percentage .</strong> I don't do % related pays.</span>
+    <div class="rule">
+      <span class="badge badge-no">No</span>
+      <span><strong>No percentage deals.</strong> I don't accept % of game revenue as payment.</span>
     </div>
-    <div class="policy-rule">
-      <span class="rule-badge rule-yes">Yes</span>
-      <span><strong>40% upfront and 60% at end</strong> you send me 40% of pay then i finish the job and you pay the rest </span>
+    <div class="rule">
+      <span class="badge badge-yes">Yes</span>
+      <span><strong>40% upfront, 60% when done.</strong> You send 40% first, I finish the job, then you pay the rest.</span>
     </div>
   </div>
 
   <div class="price-info">
-    Prices vary based on complexity. DM me on Discord and we'll figure out a fair price together.
-    <div class="payment-methods">
-      <div class="pay-badge">🟢 Robux</div>
-      <div class="pay-badge">🔵 PayPal</div>
-    </div>
-  </div>
-
-  <div class="price-grid">
-    <div class="price-card">
-      <div class="pc-label">Tier 01</div>
-      <div class="pc-title">Small Job</div>
-      <div class="pc-amount">Low price</div>
-      <div class="pc-desc">Quick fixes or single features.</div>
-    </div>
-    <div class="price-card">
-      <div class="pc-label">Tier 02</div>
-      <div class="pc-title">Medium Job</div>
-      <div class="pc-amount">Mid price</div>
-      <div class="pc-desc">Complex systems and integrations.</div>
-    </div>
-    <div class="price-card">
-      <div class="pc-label">Tier 03</div>
-      <div class="pc-title">Big Job</div>
-      <div class="pc-amount">Negotiable</div>
-      <div class="pc-desc">Full frameworks and mechanics.</div>
+    Price depends on what needs to be done. DM me on Discord and we'll work out a fair number together.
+    <div class="pay-methods">
+      <div class="pay-badge">
+        <!-- Robux R$ icon -->
+        <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="20" height="20" rx="4" fill="#00A2FF" fill-opacity="0.18"/>
+          <text x="10" y="14.5" text-anchor="middle" font-family="'Arial Black',Arial" font-weight="900" font-size="11" fill="#3ab4ff">R$</text>
+        </svg>
+        Robux
+      </div>
+      <div class="pay-badge">
+        <!-- PayPal official P logo shape -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.554 7.082c.3-1.9-.003-3.197-.992-4.37C17.46 1.436 15.518 1 13.05 1H5.96a1 1 0 0 0-.988.844L2.005 20.267A.6.6 0 0 0 2.6 21h4.33l-.32 2.03a.525.525 0 0 0 .518.61h3.63a.875.875 0 0 0 .864-.738l.036-.185.686-4.346.044-.24a.875.875 0 0 1 .864-.738h.545c3.524 0 6.284-1.432 7.09-5.574.337-1.733.163-3.18-.73-4.197a3.482 3.482 0 0 0-1.003-.74z" fill="#009CDE"/>
+          <path d="M19.554 7.082c.3-1.9-.003-3.197-.992-4.37C17.46 1.436 15.518 1 13.05 1H5.96a1 1 0 0 0-.988.844L2.005 20.267A.6.6 0 0 0 2.6 21h4.33l1.086-6.886-.034.216A1 1 0 0 1 8.97 13.5h1.862c4.017 0 7.16-1.632 8.08-6.353l.027-.134c-.128-.066-.13-.065 0 0 .216-.082.431.069.615.069z" fill="#012169"/>
+        </svg>
+        PayPal
+      </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-name">RIPPER<span>.</span></div>
-  <div class="footer-copy">© 2026 Ripper · Luau Developer</div>
-</footer>
+<footer></footer>
 
 <div id="toast">Username Copied!</div>
 
 <script>
-// ─── PARTICLE BACKGROUND ───
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 let W, H, particles = [];
@@ -652,10 +485,10 @@ class P {
   init() {
     this.x = Math.random() * W;
     this.y = Math.random() * H;
-    this.r = Math.random() * 1.5 + 0.3;
-    this.vx = (Math.random() - 0.5) * 0.35;
-    this.vy = (Math.random() - 0.5) * 0.35;
-    this.o = Math.random() * 0.5 + 0.1;
+    this.r = Math.random() * 0.85 + 0.1;
+    this.vx = (Math.random() - 0.5) * 0.16;
+    this.vy = (Math.random() - 0.5) * 0.16;
+    this.o = Math.random() * 0.18 + 0.02;
   }
   update() {
     this.x += this.vx; this.y += this.vy;
@@ -664,28 +497,16 @@ class P {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(0,229,255,${this.o})`;
+    ctx.fillStyle = `rgba(74,122,255,${this.o})`;
     ctx.fill();
   }
 }
 
-function initP() {
-  particles = [];
-  for (let i = 0; i < 70; i++) particles.push(new P());
-}
-
-// Draw radial gradient background
-function drawBG() {
-  const grd = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, Math.max(W,H)*0.7);
-  grd.addColorStop(0, '#0a0a14');
-  grd.addColorStop(1, '#060608');
-  ctx.fillStyle = grd;
-  ctx.fillRect(0, 0, W, H);
-}
+function initP() { particles = []; for (let i = 0; i < 38; i++) particles.push(new P()); }
 
 function loop() {
-  ctx.clearRect(0, 0, W, H);
-  drawBG();
+  ctx.fillStyle = '#010102';
+  ctx.fillRect(0, 0, W, H);
   particles.forEach(p => { p.update(); p.draw(); });
   requestAnimationFrame(loop);
 }
@@ -693,37 +514,35 @@ function loop() {
 resize(); initP(); loop();
 window.addEventListener('resize', () => { resize(); initP(); });
 
-// ─── SCROLL-BASED FADE-IN ───
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.08 });
 
-document.querySelectorAll('.card, .approach-card, .work-card, .price-card, .payment-policy, .price-info, .workflow-card').forEach(el => {
+document.querySelectorAll('.card,.ssa-card,.work-card,.policy,.price-info,.workflow-box').forEach(el => {
   el.style.opacity = '0';
-  el.style.transform = 'translateY(28px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, box-shadow 0.3s';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, box-shadow 0.25s';
   io.observe(el);
 });
 
-// ─── COPY DISCORD ───
 function copyDiscord() {
   navigator.clipboard.writeText('ripper.luau');
   const t = document.getElementById('toast');
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
+  setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-// ─── ACTIVE NAV ───
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 window.addEventListener('scroll', () => {
   let cur = '';
-  sections.forEach(s => { if (scrollY >= s.offsetTop - 200) cur = s.id; });
+  sections.forEach(s => { if (scrollY >= s.offsetTop - 160) cur = s.id; });
   navLinks.forEach(l => {
-    l.style.color = l.getAttribute('href') === '#' + cur ? 'var(--c-accent)' : '';
-    l.style.background = l.getAttribute('href') === '#' + cur ? 'rgba(0,229,255,0.07)' : '';
+    const a = l.getAttribute('href') === '#' + cur;
+    l.style.color = a ? 'var(--accent)' : '';
+    l.style.background = a ? 'rgba(74,122,255,0.07)' : '';
   });
 }, { passive: true });
 </script>
