@@ -377,14 +377,14 @@
   <div class="ssa-card">
     <div class="ssa-label">Architecture</div>
     <div class="ssa-title">SSA — Single Script Architecture</div>
-    <p class="ssa-body">I split game systems into services. Each service gets initialized depending on who owns it — some run on the client, some on the server, some on both. For example a build system would have a <strong style="color:#7aabff">BuildServiceClient</strong> and a <strong style="color:#7aabff">BuildServiceServer</strong>, or just one of them if the service only needs to run on one side. The scripts that boot everything up handle this automatically.</p>
+    <p class="ssa-body">I split game systems into services. Each service gets their own module and  initialized depending on who owns it — some run on the client, some on the server, some on both. For example a build system would have a <strong style="color:#7aabff">BuildServiceClient</strong> and a <strong style="color:#7aabff">BuildServiceServer</strong>, or just one of them if the service only needs to run on one side. The scripts that boot everything up handle this automatically.</p>
     <div class="code-example">
       <span class="cm">-- server boots server-side services</span><br>
       <span class="kw">BuildServiceServer</span><span class="fn">:init()</span><br>
       <span class="cm">-- client boots client-side services</span><br>
       <span class="kw">BuildServiceClient</span><span class="fn">:init()</span><br>
       <span class="cm">-- some services only need one side</span><br>
-      <span class="kw">DataService</span><span class="fn">:init()</span>&nbsp;&nbsp;<span class="cm">-- server only</span>
+      <span class="kw">somecoolservice</span><span class="fn">:init()</span>&nbsp;&nbsp;<span class="cm">-- server only</span>
     </div>
   </div>
 </section>
