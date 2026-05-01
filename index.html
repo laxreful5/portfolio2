@@ -414,23 +414,7 @@
   </div>
 </section>
 
-<section id="approach">
-  <div class="eyebrow">How I Code</div>
-  <div class="sec-title">My Architecture</div>
-  <div class="ssa-card">
-    <div class="ssa-label">Architecture</div>
-    <div class="ssa-title">SSA — Single Script Architecture</div>
-    <p class="ssa-body">I split game systems into services. Each service gets their own module and initialized depending on who owns it — some run on the client, some on the server, some on bot[...]
-    <div class="code-example">
-      <span class="cm">-- server boots server-side services</span><br>
-      <span class="kw">BuildServiceServer</span><span class="fn">:init()</span><br>
-      <span class="cm">-- client boots client-side services</span><br>
-      <span class="kw">BuildServiceClient</span><span class="fn">:init()</span><br>
-      <span class="cm">-- some services only need one side</span><br>
-      <span class="kw">somecoolservice</span><span class="fn">:init()</span>&nbsp;&nbsp;<span class="cm">-- server only</span>
-    </div>
-  </div>
-</section>
+
 
 
 <section id="works">
