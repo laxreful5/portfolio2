@@ -142,12 +142,6 @@
     background: rgba(74,122,255,0.06); border: 1px solid rgba(74,122,255,0.14);
     font-size: 0.78rem; font-weight: 500; color: var(--accent);
   }
-  .chip-highlight {
-    padding: 5px 13px; border-radius: 5px;
-    background: rgba(74,122,255,0.08); border: 1px solid rgba(74,122,255,0.28);
-    font-size: 0.78rem; font-weight: 700; color: #b8c8ff;
-  }
-  .chip-highlight span { color: var(--accent); }
 
   .skill-list { list-style: none; }
   .skill-list li {
@@ -187,13 +181,8 @@
   }
   .info-block:hover { border-color: var(--border-hover); transform: translateY(-3px); }
 
-  .info-block-header {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 14px;
-  }
-  .info-block-title {
-    font-weight: 700; font-size: 0.88rem; color: #bbbbd0;
-  }
+  .info-block-header { margin-bottom: 14px; }
+  .info-block-title { font-weight: 700; font-size: 0.88rem; color: #bbbbd0; }
 
   .info-rule {
     display: flex; align-items: flex-start; gap: 10px;
@@ -210,7 +199,6 @@
   .dot-bad { background: rgba(255,80,80,0.7); }
   .dot-good { background: var(--accent); opacity: 0.8; }
 
-  /* The big example comparison box */
   .dm-compare {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -245,41 +233,7 @@
   }
   .dm-bubble strong { display: block; font-size: 0.7rem; margin-bottom: 3px; opacity: 0.4; letter-spacing: 0.05em; text-transform: uppercase; }
 
-  .info-note {
-    padding: 14px 18px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.8;
-  }
-  .info-note strong { color: var(--accent); opacity: 0.8; font-weight: 600; }
-
   /* ── end important info ── */
-
-  .ssa-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 32px;
-    max-width: 740px;
-    transition: border-color 0.25s, transform 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .ssa-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .ssa-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-  .ssa-card:hover::before { opacity: 1; }
-
-  .workflow-box {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 30px; max-width: 680px;
-    font-size: 0.87rem; color: var(--muted); line-height: 1.9;
-  }
-  .workflow-box span { color: var(--accent); font-weight: 600; }
 
   .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
 
@@ -457,7 +411,7 @@
       <div class="chips">
         <div class="chip">1 Year Experience</div>
         <div class="chip">FullStack scripter</div>
-        <div class="chip">TimeZone:UTC+1</div>
+        <div class="chip">TimeZone: UTC+1</div>
         <div class="chip">Contributing 3.9M Visits, contributed 2.1M visits and contributed 11k ccu</div>
         <div class="chip">Available for long, short term or commissions</div>
         <div class="chip">If asked I may show the code of each work if I still have them saved</div>
@@ -480,45 +434,39 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════ -->
-<!--              IMPORTANT INFO               -->
-<!-- ══════════════════════════════════════════ -->
 <section id="important">
   <div class="eyebrow">Before You DM</div>
   <div class="sec-title">Important Info</div>
 
   <div class="info-grid">
-    <!-- Rule 1 -->
     <div class="info-block">
       <div class="info-block-header">
-        <div class="info-block-title">Say hi if you want — just don't stop there</div>
+        <div class="info-block-title">Say hi if you want, just don't stop there</div>
       </div>
       <div class="info-rule">
         <div class="info-dot dot-good"></div>
-        <span>I'll still reply if you open with just "hi", no worries. But please follow up right away with what you actually need ,don't wait for me to ask. It saves us both time.</span>
+        <span>I'll still reply if you open with just "hi", no worries. But please follow up right away with what you actually need .don't wait for me to ask. It saves us both time.</span>
       </div>
       <div class="info-rule">
         <div class="info-dot dot-good"></div>
-        <span>Ideal first message: your game, what you need coded, That's it, we can figure out the rest together.</span>
+        <span>Ideal first message: your game, what you need coded. We can figure out the rest together.</span>
       </div>
     </div>
 
-    <!-- Rule 2 -->
     <div class="info-block">
       <div class="info-block-header">
-        <div class="info-block-title">Tell me exactly what you want</div>
+        <div class="info-block-title">Tell me  what you want</div>
       </div>
       <div class="info-rule">
         <div class="info-dot dot-bad"></div>
-        <span>Don't send things like "make my game better","add some stuff" or "fix all bugs in my game". I have no idea what to code from that and I'll just ask you to explain it anyway.</span>
+        <span>Don't send things like "make my game better", "add some stuff" or "fix all bugs in my game". I have no idea what to code from that and I'll just ask you to explain it anyway.</span>
       </div>
       <div class="info-rule">
         <div class="info-dot dot-good"></div>
-        <span>Describe each thing you need step by step  The more detail you give me upfront, the faster I can start.</span>
+        <span>Describe each thing you need step by step. The more detail , the faster I can start.</span>
       </div>
     </div>
 
-    <!-- Rule 3 -->
     <div class="info-block">
       <div class="info-block-header">
         <div class="info-block-title">"Copy this game" isn't a task</div>
@@ -529,27 +477,11 @@
       </div>
       <div class="info-rule">
         <div class="info-dot dot-good"></div>
-        <span>I can take inspiration from other games — just describe each mechanic you want one by one. For example: "I want a planting system where you click a plot, choose a seed, wait a timer, then harvest it for coins." That's something I can actually build.</span>
-      </div>
-    </div>
-
-    <!-- Rule 4 -->
-    <div class="info-block">
-      <div class="info-block-header">
-        <div class="info-block-title">Show me your game</div>
-      </div>
-      <div class="info-rule">
-        <div class="info-dot dot-good"></div>
-        <span>Send me the Roblox game link so I can see what's already there if game isnt yet published its ok no need to send me anything. It helps me understand the context and avoid building something that conflicts with what you already have.</span>
-      </div>
-      <div class="info-rule">
-        <div class="info-dot dot-good"></div>
-        <span>Also let me know if there more scripters already working.</span>
+        <span>I can take inspiration from other games , just describe each mechanic one by one. For example: "I want a planting system where you click a plot, choose a seed, wait a timer, then harvest it for coins assets will be provided by my builder." That's something  i will understand.</span>
       </div>
     </div>
   </div>
 
-  <!-- DM Example comparison -->
   <div class="dm-compare">
     <div class="dm-col-bad">
       <div class="dm-col-title">What not to send</div>
@@ -558,7 +490,7 @@
         hi
       </div>
       <div class="dm-bubble">
-        <strong>Message 2 — after I reply</strong>
+        <strong>Message 2</strong>
         can u script
       </div>
       <div class="dm-bubble">
@@ -567,19 +499,17 @@
       </div>
       <div class="dm-bubble">
         <strong>Message 4</strong>
-        just copy it lol
+        just copy this game lol
       </div>
     </div>
     <div class="dm-col-good">
       <div class="dm-col-title">What to send instead</div>
       <div class="dm-bubble">
         <strong>One message, straight to the point</strong>
-        Hi, I need a planting system for my simulator. Players click an empty plot, pick a seed from their inventory, wait a real-time timer, then click again to harvest and get coins. Coins and inventory should save.I also want a shop where players can buy seeds. Here's the game: [link] if game isnt published its ok dont send me link. My builder handles all the assets, I just need the scripting. 
+        Hi, I need a planting system for my simulator. Players click an empty plot, pick a seed from their inventory, wait a real-time timer, then click again to harvest and get coins. Coins and inventory should save. I also want a shop where players can buy seeds. Here's the game: [link] (if not published yet, no need to send). My builder handles all the assets, I just need the scripting.
       </div>
     </div>
   </div>
-
-
 </section>
 
 <section id="works">
@@ -617,7 +547,6 @@
   <div class="works-subsection">
     <div class="works-sub-eyebrow">Shipped Games</div>
     <div class="works-sub-title">Games Contributed / Worked On</div>
-
     <div class="works-grid">
       <div class="work-card">
         <img class="work-thumb" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAJmZmAADAPQAA/f7//QAIAAEAAAAKAAEA6AAA/QAAAAAA" alt="Break Cages for Brainrot thumbnail" />
@@ -744,7 +673,7 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08 });
 
-document.querySelectorAll('.card,.ssa-card,.work-card,.policy,.price-info,.workflow-box,.info-block,.dm-compare,.info-note').forEach(el => {
+document.querySelectorAll('.card,.work-card,.policy,.price-info,.info-block,.dm-compare').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(16px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, box-shadow 0.25s';
