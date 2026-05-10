@@ -165,6 +165,99 @@
     display: flex; align-items: center; gap: 6px;
   }
 
+  /* ── IMPORTANT INFO SECTION ── */
+  #important {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .info-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 26px;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .info-block:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+
+  .info-block-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .info-block-title {
+    font-weight: 700; font-size: 0.88rem; color: #bbbbd0;
+  }
+
+  .info-rule {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.83rem; line-height: 1.65; color: var(--muted);
+  }
+  .info-rule:first-of-type { border-top: none; padding-top: 0; }
+
+  .info-dot {
+    flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
+    margin-top: 7px;
+  }
+  .dot-bad { background: rgba(255,80,80,0.7); }
+  .dot-good { background: var(--accent); opacity: 0.8; }
+
+  /* The big example comparison box */
+  .dm-compare {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 640px) { .dm-compare { grid-template-columns: 1fr; } }
+
+  .dm-col-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 12px; font-weight: 700;
+    color: var(--muted);
+  }
+
+  .dm-bubble {
+    border-radius: 8px; padding: 10px 14px;
+    font-size: 0.82rem; line-height: 1.6;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .dm-col-good .dm-bubble {
+    background: rgba(74,122,255,0.04);
+    border: 1px solid rgba(74,122,255,0.12);
+    color: rgba(184,184,204,0.6);
+  }
+  .dm-bubble strong { display: block; font-size: 0.7rem; margin-bottom: 3px; opacity: 0.4; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .info-note {
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .info-note strong { color: var(--accent); opacity: 0.8; font-weight: 600; }
+
+  /* ── end important info ── */
+
   .ssa-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 10px; padding: 32px;
@@ -180,28 +273,6 @@
   }
   .ssa-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
   .ssa-card:hover::before { opacity: 1; }
-  .ssa-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent); opacity: 0.55; margin-bottom: 7px;
-  }
-  .ssa-title { font-weight: 700; font-size: 1rem; color: #bbbbd0; margin-bottom: 12px; }
-  .ssa-body { font-size: 0.86rem; color: var(--muted); line-height: 1.85; }
-
-  .code-example {
-    margin-top: 18px;
-    background: rgba(0,0,0,0.55);
-    border: 1px solid rgba(74,122,255,0.09);
-    border-radius: 7px;
-    padding: 14px 18px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.76rem;
-    color: rgba(184,184,204,0.5);
-    line-height: 2;
-  }
-  .kw { color: #4a7aff; }
-  .fn { color: #7aabff; }
-  .cm { color: rgba(184,184,204,0.25); }
 
   .workflow-box {
     background: var(--surface); border: 1px solid var(--border);
@@ -239,7 +310,6 @@
   .work-title { font-weight: 700; font-size: 0.93rem; color: #bbbbd0; }
   .work-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; flex: 1; }
 
-
   .work-warn {
     margin-top: 8px; font-size: 0.76rem;
     color: rgba(255,190,40,0.65); font-weight: 600;
@@ -255,10 +325,7 @@
   }
   .work-link:hover { background: rgba(74,122,255,0.11); border-color: rgba(74,122,255,0.38); }
 
-  /* Sub-section divider inside Works */
-  .works-subsection {
-    margin-top: 56px;
-  }
+  .works-subsection { margin-top: 56px; }
   .works-sub-eyebrow {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.60rem; letter-spacing: 0.18em; text-transform: uppercase;
@@ -282,7 +349,6 @@
     margin-bottom: 24px;
   }
 
-  /* ── PRICES: fully dark-themed, no red tones ── */
   .policy {
     background: #06060c;
     border: 1px solid rgba(255,255,255,0.06);
@@ -368,6 +434,7 @@
 
 <nav>
   <a class="nav-link" href="#about">Info</a>
+  <a class="nav-link" href="#important">Important</a>
   <a class="nav-link" href="#works">Past-Works</a>
   <a class="nav-link" href="#prices">Prices</a>
 </nav>
@@ -391,14 +458,14 @@
         <div class="chip">1 Year Experience</div>
         <div class="chip">FullStack scripter</div>
         <div class="chip">TimeZone:UTC+1</div>
-        <div class="chip">Contributing 3.9M Visits,contributed 2.1M visits and contributed 11k ccu</div>
-         <div class="chip">Available for long,short term or commisions </div>
-            <div class="chip">If asked i may show the code of each work if i still have them saved</div>
-       <div class="chip">Some assets in the work(models,ui,vfx) are not made by me but i made all the code</div> 
+        <div class="chip">Contributing 3.9M Visits, contributed 2.1M visits and contributed 11k ccu</div>
+        <div class="chip">Available for long, short term or commissions</div>
+        <div class="chip">If asked I may show the code of each work if I still have them saved</div>
+        <div class="chip">Some assets in the work (models, ui, vfx) are not made by me but I made all the code</div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">What i can code</div>
+      <div class="card-title">What I can code</div>
       <ul class="skill-list">
         <li>PvP Systems</li>
         <li>Data Saving</li>
@@ -413,21 +480,119 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════ -->
+<!--              IMPORTANT INFO               -->
+<!-- ══════════════════════════════════════════ -->
+<section id="important">
+  <div class="eyebrow">Before You DM</div>
+  <div class="sec-title">Important Info</div>
+
+  <div class="info-grid">
+    <!-- Rule 1 -->
+    <div class="info-block">
+      <div class="info-block-header">
+        <div class="info-block-title">Say hi if you want — just don't stop there</div>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-good"></div>
+        <span>I'll still reply if you open with just "hi", no worries. But please follow up right away with what you actually need — don't wait for me to ask. It saves us both time.</span>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-good"></div>
+        <span>Ideal first message: your game, what you need built, and roughly what your budget is. That's it, we can figure out the rest together.</span>
+      </div>
+    </div>
+
+    <!-- Rule 2 -->
+    <div class="info-block">
+      <div class="info-block-header">
+        <div class="info-block-title">Tell me exactly what you want</div>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-bad"></div>
+        <span>Don't send things like "make my game better","add some stuff" or "fix all bugs in my game". I have no idea what to code from that and I'll just ask you to explain it anyway.</span>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-good"></div>
+        <span>Describe each thing you need step by step  The more detail you give me upfront, the faster I can start.</span>
+      </div>
+    </div>
+
+    <!-- Rule 3 -->
+    <div class="info-block">
+      <div class="info-block-header">
+        <div class="info-block-title">"Copy this game" isn't a task</div>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-bad"></div>
+        <span>Don't just send a game link and say "make it like this". That tells me nothing useful. I need to know what specific things you want, not just the game name.</span>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-good"></div>
+        <span>I can take inspiration from other games — just describe each mechanic you want one by one. For example: "I want a planting system where you click a plot, choose a seed, wait a timer, then harvest it for coins." That's something I can actually build.</span>
+      </div>
+    </div>
+
+    <!-- Rule 4 -->
+    <div class="info-block">
+      <div class="info-block-header">
+        <div class="info-block-title">Show me your game</div>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-good"></div>
+        <span>Send me the Roblox game link so I can see what's already there if game isnt yet published its ok no need to send me anything. It helps me understand the context and avoid building something that conflicts with what you already have.</span>
+      </div>
+      <div class="info-rule">
+        <div class="info-dot dot-good"></div>
+        <span>Also let me know if there more scripters already working.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DM Example comparison -->
+  <div class="dm-compare">
+    <div class="dm-col-bad">
+      <div class="dm-col-title">What not to send</div>
+      <div class="dm-bubble">
+        <strong>Message 1</strong>
+        hi
+      </div>
+      <div class="dm-bubble">
+        <strong>Message 2 — after I reply</strong>
+        can u script
+      </div>
+      <div class="dm-bubble">
+        <strong>Message 3</strong>
+        i want my game like grow a garden
+      </div>
+      <div class="dm-bubble">
+        <strong>Message 4</strong>
+        just copy it lol
+      </div>
+    </div>
+    <div class="dm-col-good">
+      <div class="dm-col-title">What to send instead</div>
+      <div class="dm-bubble">
+        <strong>One message, straight to the point</strong>
+        Hi, I need a planting system for my simulator. Players click an empty plot, pick a seed from their inventory, wait a real-time timer, then click again to harvest and get coins. Coins and inventory should save.I also want a shop where players can buy seeds. Here's the game: [link] if game isnt published its ok dont send me link. My builder handles all the assets, I just need the scripting. 
+      </div>
+    </div>
+  </div>
 
 
+</section>
 
 <section id="works">
   <div class="eyebrow">Projects</div>
   <div class="sec-title">My Works</div>
   <div class="notice">⚠ Just started recording my work — not many clips yet.</div>
 
-  <!-- Video clips -->
   <div class="works-grid">
     <div class="work-card">
       <iframe class="work-video" src="https://www.youtube.com/embed/YAcVqIIFzCw?autoplay=1&mute=1&loop=1&playlist=YAcVqIIFzCw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <div class="work-body">
         <div class="work-title">Custom Stand Summoning</div>
-        <div class="work-desc">Stand summoning system where the idle animation changes depending on which stand is active.Stand saves so everytime you rejoin you get your stand</div>
+        <div class="work-desc">Stand summoning system where the idle animation changes depending on which stand is active. Stand saves so every time you rejoin you get your stand.</div>
         <a class="work-link" href="https://youtu.be/YAcVqIIFzCw" target="_blank">View Video ↗</a>
       </div>
     </div>
@@ -435,73 +600,52 @@
       <iframe class="work-video" src="https://www.youtube.com/embed/QkkssarI0Wc?autoplay=1&mute=1&loop=1&playlist=QkkssarI0Wc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <div class="work-body">
         <div class="work-title">Inventory, Codes &amp; Arrow System</div>
-        <div class="work-desc">An inventory, reward codes, and a stand-getting arrow system.inventory saves so you dont lose the items,used codes saves so player cant reuse the same code</div>
+        <div class="work-desc">An inventory, reward codes, and a stand-getting arrow system. Inventory saves so you don't lose items, used codes save so players can't reuse the same code.</div>
         <a class="work-link" href="https://youtu.be/QkkssarI0Wc" target="_blank">View Video ↗</a>
       </div>
     </div>
-
-  <div class="work-card">
-  <iframe class="work-video" src="https://www.youtube.com/embed/c_qIZas50-s?autoplay=1&mute=1&loop=1&playlist=c_qIZas50-s" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  <div class="work-body">
-    <div class="work-title">Feedback system(FEEDBACK UI MADE BY : @aviku1 in discord</div>
-    <div class="work-desc">A FeedBack system where player can send messages from roblox to discord webhooks so devs can see what player thinks i would had added a 5 hours cooldown but i  was rushing and ignore bad resolution was on my mid laptop
+    <div class="work-card">
+      <iframe class="work-video" src="https://www.youtube.com/embed/c_qIZas50-s?autoplay=1&mute=1&loop=1&playlist=c_qIZas50-s" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="work-body">
+        <div class="work-title">Feedback System (UI by @aviku1)</div>
+        <div class="work-desc">A feedback system where players can send messages from Roblox to Discord webhooks so devs can see what players think. Would have added a 5-hour cooldown but was rushing.</div>
+        <a class="work-link" href="https://youtu.be/c_qIZas50-s" target="_blank">View Video ↗</a>
+      </div>
     </div>
-    <a class="work-link" href="https://youtu.be/c_qIZas50-s" target="_blank">View Video ↗</a>
-  </div>
-</div>
   </div>
 
-  <!-- Games contributed section -->
   <div class="works-subsection">
     <div class="works-sub-eyebrow">Shipped Games</div>
     <div class="works-sub-title">Games Contributed / Worked On</div>
 
-    
     <div class="works-grid">
       <div class="work-card">
-        <img
-          class="work-thumb"
-          src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAJmZmAADAPQAA/f7//QAIAAEAAAAKAAEA6AAA/QAAAAAA"
-          alt="Break Cages for Brainrot thumbnail"
-        />
+        <img class="work-thumb" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAJmZmAADAPQAA/f7//QAIAAEAAAAKAAEA6AAA/QAAAAAA" alt="Break Cages for Brainrot thumbnail" />
         <div class="work-body">
           <div class="work-title">Break Cages for Brainrot</div>
-          <div class="work-desc">Contributed to this game and fixed all bugs made by their old scripter and added some features they asked me to</div>
+          <div class="work-desc">Contributed to this game, fixed all bugs made by their old scripter and added features they requested.</div>
           <a class="work-link" href="https://www.roblox.com/games/131852758589425/Break-Cages-For-Brainrots" target="_blank">Game link ↗</a>
         </div>
       </div>
       <div class="work-card">
-        <img
-          class="work-thumb"
-          src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAJmZmAADAPQAA/f7//QAIAAEAAAAKAAEA6AAA/QAAAAAA"
-          alt="Tower Defense Simulator Battlefield thumbnail"
-        />
+        <img class="work-thumb" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAJmZmAADAPQAA/f7//QAIAAEAAAAKAAEA6AAA/QAAAAAA" alt="Tower Defense Simulator Battlefield thumbnail" />
         <div class="work-body">
-          <div class="work-meta"> &nbsp;·&nbsp; 3.9M Visits</div>
+          <div class="work-meta">3.9M Visits</div>
           <div class="work-title">Tower Defense Simulator Battlefield</div>
-          <div class="work-desc">
-            Planned contribution — haven't started yet as the other devs are currently busy, but will be contributing very soon. Just wanted to add it early.
-          </div>
+          <div class="work-desc">Planned contribution — haven't started yet as the other devs are currently busy, but will be contributing very soon.</div>
           <div class="work-warn">⚠ Contribution not yet started</div>
           <a class="work-link" href="https://www.roblox.com/games/9567575967/Tower-Defense-Simulator-Battlefield" target="_blank">Game link ↗</a>
         </div>
       </div>
-      
       <div class="work-card">
-  <img
-    class="work-thumb"
-    src="https://tr.rbxcdn.com/180DAY-3dacef7f6ade5753de55e3176d44f672/768/432/Image/Webp/noFilter"
-    alt="Sweet Spot SpeedWay thumbnail"
-  />
-  <div class="work-body">
-    <div class="work-meta">2.1M Visits</div>
-    <div class="work-title">Sweet Spot Speedway</div>
-    <div class="work-desc">
-     fixed majors bugs made from their old scripter and added some features
-    </div>
-    <a class="work-link" href="https://www.roblox.com/games/7628800052/Sweet-Spot-Speedway" target="_blank">Game link ↗</a>
-  </div>
-</div>
+        <img class="work-thumb" src="https://tr.rbxcdn.com/180DAY-3dacef7f6ade5753de55e3176d44f672/768/432/Image/Webp/noFilter" alt="Sweet Spot SpeedWay thumbnail" />
+        <div class="work-body">
+          <div class="work-meta">2.1M Visits</div>
+          <div class="work-title">Sweet Spot Speedway</div>
+          <div class="work-desc">Fixed major bugs left by their old scripter and added requested features.</div>
+          <a class="work-link" href="https://www.roblox.com/games/7628800052/Sweet-Spot-Speedway" target="_blank">Game link ↗</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -517,11 +661,11 @@
     </div>
     <div class="rule">
       <span class="badge badge-no">No</span>
-      <span><strong>no upon completion pays.</strong> I've been scammed too many times that way, so I don't do it anymore sorry.</span>
+      <span><strong>No upon completion pays.</strong> I've been scammed too many times that way, so I don't do it anymore sorry.</span>
     </div>
     <div class="rule">
       <span class="badge badge-no">No</span>
-      <span><strong>no %.</strong> I don't accept % of game revenue as payment.</span>
+      <span><strong>No %.</strong> I don't accept % of game revenue as payment.</span>
     </div>
     <div class="rule">
       <span class="badge badge-yes">Yes</span>
@@ -554,14 +698,6 @@
 <div id="toast">Username Copied!</div>
 
 <script>
-// Embed the actual thumbnail as base64 on the game card
-(function() {
-  const img = document.querySelector('.work-thumb');
-  if (img) {
-    // thumbnail already embedded inline
-  }
-})();
-
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 let W, H, particles = [];
@@ -608,7 +744,7 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08 });
 
-document.querySelectorAll('.card,.ssa-card,.work-card,.policy,.price-info,.workflow-box').forEach(el => {
+document.querySelectorAll('.card,.ssa-card,.work-card,.policy,.price-info,.workflow-box,.info-block,.dm-compare,.info-note').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(16px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, box-shadow 0.25s';
